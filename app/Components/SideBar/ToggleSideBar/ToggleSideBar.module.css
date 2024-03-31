@@ -2,35 +2,47 @@
   position: fixed;
   left: 0;
   bottom: 50px;
-  height: 48px;
   display: flex;
   align-items: center;
+  height: 48px;
+  width: 276px;
+  display: flex;
+  align-items: center;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform .3s ease-in;
+}
+
+.container:hover {
+  color: rgb(var(--purple));
+}
+
+.container:hover.open svg path {
+  fill: rgb(var(--purple));
+}
+
+.container:hover.close svg path {
+  fill: rgb(var(--white));
 }
 
 .open {
-  width: 276px;
+  gap: 20px;
   padding-left: 30px;
   border-radius: 0 25px 25px 0;
 }
 
 .open:hover {
-  
-}
-
-.content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  cursor: pointer;
+  background: var(--toggleSideBar-hover);
 }
 
 .close {
-  justify-content: center;
-  height: 48px;
-  width: 56px;
+  justify-content: flex-end;
   border-radius: 0 25px 25px 0;
+  padding-right: 19px;
   background: rgb(var(--purple));
-  cursor: pointer;
+  transform: translateX(calc(-100% + 56px));
 }
 
 .close:hover {

@@ -8,8 +8,8 @@
   padding: 12px 12px 130px 12px;
   background: var(--secondary-background);
   color: var(--secondary-text-color);
-  font-weight: bold;
   font-size: 18px;
+  font-weight: bold;
   transition: transform .3s ease-in;
 }
 

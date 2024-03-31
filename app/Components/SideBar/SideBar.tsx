@@ -14,7 +14,7 @@ type SideBarProps = {
 };
 
 function SideBar({ boards }: SideBarProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const onClickHandler = () => {
     setIsOpen((current) => !current);
@@ -22,7 +22,7 @@ function SideBar({ boards }: SideBarProps) {
 
   return (
     <>
-      <div className={cx({ container: true, close: isOpen })}>
+      <div className={cx({ container: true, close: !isOpen })}>
         <p>Tous les tableaux ({boards.length})</p>
         <ThemeSelector />
       </div>
