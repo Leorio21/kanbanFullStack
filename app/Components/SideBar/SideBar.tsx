@@ -12,9 +12,10 @@ const cx = classNames.bind(styles);
 type SideBarProps = {
   boards: Board[];
   activeBoard: Board;
+  changeActiveBoard: (newBoard: Board) => void;
 };
 
-function SideBar({ boards, activeBoard }: SideBarProps) {
+function SideBar({ boards, activeBoard, changeActiveBoard }: SideBarProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   const onClickHandler = () => {
@@ -25,8 +26,10 @@ function SideBar({ boards, activeBoard }: SideBarProps) {
     <>
       <div className={cx({ container: true, close: !isOpen })}>
         <div className={cx("boardListContainer")}>
-          <p className={cx("boardListTitle")}>Tous les tableaux ({boards.length})</p>
-          <BoardList boards={boards} activeBoard={activeBoard} />
+          <p className={cx("boardListTitle")}>
+            Tous les tableaux ({boards.length})
+          </p>
+          <BoardList boards={boards} activeBoard={activeBoard} changeActiveBoard={changeActiveBoard} />
         </div>
         <ThemeSelector />
       </div>

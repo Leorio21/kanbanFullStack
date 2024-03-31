@@ -11,9 +11,9 @@ type CardProps = {
   activeBoard?: Board;
 } & ComponentPropsWithoutRef<"div">;
 
-function Card({ addNewBoard = false, boardName = "", activeBoard,children }: CardProps) {
+function Card({ addNewBoard = false, boardName = "", activeBoard, children, ...props }: CardProps) {
   return (
-    <div className={cx({ container: true, new: addNewBoard, active: boardName===activeBoard?.name })}>
+    <div className={cx({ container: true, new: addNewBoard, active: boardName===activeBoard?.name })} {...props} >
       {children}
     </div>
   );
