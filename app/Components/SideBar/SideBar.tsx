@@ -4,10 +4,16 @@ import classNames from "classnames/bind";
 import styles from "./SideBar.module.css";
 import ThemeSelector from "./ThemeSelector/ThemeSelector";
 import ToggleSideBar from "./ToggleSideBar/ToggleSideBar";
+import type { Board } from "@/app/Types/Types";
+import boardLogo from "../../../public/assets/icon-board.svg";
 
 const cx = classNames.bind(styles);
 
-function SideBar() {
+type SideBarProps = {
+  boards: Board[];
+};
+
+function SideBar({ boards }: SideBarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickHandler = () => {
@@ -17,7 +23,7 @@ function SideBar() {
   return (
     <>
       <div className={cx({ container: true, close: isOpen })}>
-        <p>Tous les tableaux (10)</p>
+        <p>Tous les tableaux ({boards.length})</p>
         <ThemeSelector />
       </div>
       <ToggleSideBar isOpen={isOpen} onClick={() => onClickHandler()} />

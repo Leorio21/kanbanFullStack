@@ -10,6 +10,11 @@
 .open {
   width: 276px;
   padding-left: 30px;
+  border-radius: 0 25px 25px 0;
+}
+
+.open:hover {
+  
 }
 
 .content {
@@ -26,4 +31,8 @@
   border-radius: 0 25px 25px 0;
   background: rgb(var(--purple));
   cursor: pointer;
+}
+
+.close:hover {
+  background: rgb(var(--purple--light));
 }

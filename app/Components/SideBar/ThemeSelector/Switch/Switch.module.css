@@ -8,6 +8,10 @@
   background: rgb(var(--purple));
 }
 
+.container:hover {
+  background: rgb(var(--purple--light));
+}
+
 .cursor {
   height: 14px;
   width: 14px;
