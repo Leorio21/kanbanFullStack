@@ -11,7 +11,6 @@ type ToggleSideBarProps = {
 
 function ToggleSideBar({ isOpen, ...props }: ToggleSideBarProps) {
   return (
-    <Card>
       <div
         className={cx({ container: true, open: isOpen, close: !isOpen })}
         {...props}
@@ -35,7 +34,6 @@ function ToggleSideBar({ isOpen, ...props }: ToggleSideBarProps) {
           </svg>
         )}
       </div>
-    </Card>
   );
 }
 
