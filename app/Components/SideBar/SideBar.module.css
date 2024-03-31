@@ -5,14 +5,25 @@
   align-items: center;
   height: calc(100% - 100px);
   width: 300px;
-  padding: 12px 12px 130px 12px;
+  padding-bottom: 130px;
   background: var(--secondary-background);
   color: var(--secondary-text-color);
   font-size: 18px;
   font-weight: bold;
-  transition: transform .3s ease-in;
+  transition: transform 0.3s ease-in;
 }
 
 .close {
   transform: translateX(-100%);
+}
+
+.boardListContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.boardListTitle {
+  width: 100%;
+  padding: 20px 0 20px 30px;
 }

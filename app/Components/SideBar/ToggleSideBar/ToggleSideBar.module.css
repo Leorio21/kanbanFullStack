@@ -6,8 +6,6 @@
   align-items: center;
   height: 48px;
   width: 276px;
-  display: flex;
-  align-items: center;
   color: var(--secondary-text-color);
   cursor: pointer;
   font-size: 18px;
@@ -34,7 +32,7 @@
 }
 
 .open:hover {
-  background: var(--toggleSideBar-hover);
+  background: var(--board-toggle--hover);
 }
 
 .close {

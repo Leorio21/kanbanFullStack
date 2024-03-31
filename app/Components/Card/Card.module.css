@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 48px;
+  width: 276px;
+  padding-left: 30px;
+  border-radius: 0 25px 25px 0;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.container:hover {
+  background: var(--board-toggle--hover);
+  color: rgb(var(--purple));
+}
+
+.container:hover svg path {
+  fill: rgb(var(--purple));
+}
+
+.new {
+  color: rgb(var(--purple));
+}
+
+.new svg path {
+  fill: rgb(var(--purple));
+}
+
+.active {
+  background: rgb(var(--purple));
+  color: rgb(var(--white--light));
+}
+
+.active svg path {
+  fill: rgb(var(--white--light));
+}

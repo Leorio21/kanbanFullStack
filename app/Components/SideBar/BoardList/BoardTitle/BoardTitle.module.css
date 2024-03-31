@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height:48px;
+  width: 276px;
+  padding-left: 20px;
+}
+
+.container:hover {
+  background: blue;
+}

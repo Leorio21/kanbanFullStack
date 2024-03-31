@@ -18,7 +18,7 @@
   --primary-text-color: rgb(var(--black));
   --secondary-text-color: rgb(var(--grey));
 
-  --toggleSideBar-hover: rgb(var(--purple--light));
+  --board-toggle--hover: rgb(var(--purple--light));
 }
 
 .theme-dark {
@@ -28,7 +28,7 @@
   --primary-text-color: rgb(var(--white));
   --secondary-text-color: rgb(var(--grey));
 
-  --toggleSideBar-hover: rgb(var(--white--light));
+  --board-toggle--hover: rgb(var(--white--light));
 }
 
 * {
@@ -64,7 +64,7 @@ a {
     --primary-text-color: rgb(var(--white));
     --secondary-text-color: rgb(var(--grey));
 
-    --toggleSideBar-hover: rgb(var(--purple--light));
+    --board-toggle--hover: rgb(var(--purple--light));
   }
 
   html {
