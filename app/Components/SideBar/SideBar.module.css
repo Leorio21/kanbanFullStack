@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100% - 100px);
+  width: 260px;
+  padding: 12px 12px 130px 12px;
+  background: var(--secondary-background);
+  color: var(--secondary-text-color);
+  font-weight: bold;
+  font-size: 18px;
+  transition: transform .3s ease-in;
+}
+
+.close {
+  transform: translateX(-100%);
+}

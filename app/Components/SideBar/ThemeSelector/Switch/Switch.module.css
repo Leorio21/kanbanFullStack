@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  width: 40px;
+  border-radius: 25px;
+  padding: 3px;
+  background: rgb(var(--purple));
+}
+
+.cursor {
+  height: 14px;
+  width: 14px;
+  border-radius: 25px;
+  background: rgb(var(--white--light));
+  transition: all .3s ease-in-out;
+}
+
+.dark {
+  transform: translateX(20px);
+}

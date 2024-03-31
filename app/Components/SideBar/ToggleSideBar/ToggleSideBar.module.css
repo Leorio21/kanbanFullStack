@@ -1,0 +1,29 @@
+.container {
+  position: fixed;
+  left: 0;
+  bottom: 50px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.open {
+  width: 276px;
+  padding-left: 30px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.close {
+  justify-content: center;
+  height: 48px;
+  width: 56px;
+  border-radius: 0 25px 25px 0;
+  background: rgb(var(--purple));
+  cursor: pointer;
+}

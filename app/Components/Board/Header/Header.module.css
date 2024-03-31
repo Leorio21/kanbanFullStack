@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  padding-left: 40px;
+  background: var(--secondary-background);
+}

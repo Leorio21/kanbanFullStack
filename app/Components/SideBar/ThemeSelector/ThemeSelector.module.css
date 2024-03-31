@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 23px;
+  height: 48px;
+  width: 235px;
+  border-radius: 6px;
+  background: var(--primary-background);
+}
