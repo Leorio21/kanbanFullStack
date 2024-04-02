@@ -4,18 +4,13 @@ import classNames from "classnames/bind";
 import styles from "./SideBar.module.css";
 import ThemeSelector from "./ThemeSelector/ThemeSelector";
 import ToggleSideBar from "./ToggleSideBar/ToggleSideBar";
-import type { Board } from "@/app/Types/Types";
 import BoardList from "./BoardList/BoardList";
+import { useBoardsStore } from "@/app/Stores/useBoards";
 
 const cx = classNames.bind(styles);
 
-type SideBarProps = {
-  boards: Board[];
-  activeBoard: Board;
-  changeActiveBoard: (newBoard: Board) => void;
-};
-
-function SideBar({ boards, activeBoard, changeActiveBoard }: SideBarProps) {
+function SideBar() {
+  const boards = useBoardsStore((state) => state.boards);
   const [isOpen, setIsOpen] = useState(true);
 
   const onClickHandler = () => {
@@ -29,7 +24,7 @@ function SideBar({ boards, activeBoard, changeActiveBoard }: SideBarProps) {
           <p className={cx("boardListTitle")}>
             Tous les tableaux ({boards.length})
           </p>
-          <BoardList boards={boards} activeBoard={activeBoard} changeActiveBoard={changeActiveBoard} />
+          <BoardList />
         </div>
         <ThemeSelector />
       </div>

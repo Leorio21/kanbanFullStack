@@ -1,18 +1,14 @@
-import { Board } from "@/app/Types/Types";
 import React from "react";
 import BoardTitle from "./BoardTitle/BoardTitle";
+import { useBoardsStore } from "@/app/Stores/useBoards";
 
-type BoardListProps = {
-  boards: Board[];
-  activeBoard: Board;
-  changeActiveBoard: (newBoard: Board) => void;
-};
+function BoardList() {
+  const boards = useBoardsStore((state) => state.boards);
 
-function BoardList({ boards, activeBoard, changeActiveBoard }: BoardListProps) {
   return (
     <>
       {boards.map((board) => (
-        <BoardTitle key={board.name} board={board} activeBoard={activeBoard} onClick={() => changeActiveBoard(board)} />
+        <BoardTitle key={board.name} board={board} />
       ))}
       <BoardTitle />
     </>
