@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 300px;
+  padding-bottom: 90px;
+  background: var(--secondary-background);
+  color: var(--secondary-text-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.close {
+  display: none;
+}
+
+.boardListContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.boardListTitle {
+  width: 100%;
+  padding: 20px 0 20px 30px;
+}

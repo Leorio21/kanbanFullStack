@@ -1,4 +1,5 @@
-:root, .theme-light {
+:root,
+.theme-light {
   --purple: 99, 95, 199; /*#635FC7 */
   --purple--light: 168, 164, 255; /*#A8A4FF*/
   --black: 0, 1, 18; /*#000112*/
@@ -18,17 +19,29 @@
   --primary-text-color: rgb(var(--black));
   --secondary-text-color: rgb(var(--grey));
 
-  --board-toggle--hover: rgb(var(--purple--light));
+  --board-toggle--hover: rgba(var(--purple), 0.25);
+  --board-content--border: rgb(var(--grey--light));
+
+  --button-background-color--purple: rgb(var(--purple));
+  --button-background-color--purple--hover: rgb(var(--purple--light));
+  --button-background-color--white: rgba(var(--purple), 0.1);
+  --button-background-color--white--hover: rgba(var(--purple), 0.25);
+  --button-background-color--red: rgb(var(--red));
+  --button-background-color--red--hover: rgb(var(--red--light));
 }
 
 .theme-dark {
   --primary-background: rgb(var(--black--light));
   --secondary-background: rgb(var(--darkGrey));
-  
+
   --primary-text-color: rgb(var(--white));
   --secondary-text-color: rgb(var(--grey));
 
   --board-toggle--hover: rgb(var(--white--light));
+  --board-content--border: rgb(var(--darkGrey--light));
+
+  --button-background-color--white: rgb(var(--white--light));
+  --button-background-color--white--hover: rgb(var(--white--light));
 }
 
 * {
@@ -55,20 +68,22 @@ a {
   text-decoration: none;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-background: rgb(var(--black--light));
     --secondary-background: rgb(var(--darkGrey));
-    
+
     --primary-text-color: rgb(var(--white));
     --secondary-text-color: rgb(var(--grey));
 
     --board-toggle--hover: rgb(var(--purple--light));
+    --board-content--border: rgb(var(--darkGrey--light));
+
+    --button-background-color--white: rgb(var(--white--light));
+    --button-background-color--white--hover: rgb(var(--white--light));
   }
 
   html {
     color-scheme: light dark;
   }
-  
 }

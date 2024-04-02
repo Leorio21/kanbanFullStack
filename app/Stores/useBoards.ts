@@ -5,17 +5,23 @@ import baordsJson from "@/data.json";
 
 interface BoardsState {
   boards: Board[];
-  activeBoard: string | null;
+  sideBarIsCLosed: boolean;
+  activeBoardName: string | null;
+  activeBoard: Board | null;
   addNewBoard: (newboardTitle: string) => void;
-  changeActiveBoard: (newActiveBoard: string) => void;
+  openCloseSideBar: () => void;
+  changeActiveBoard: (newActiveBoard: Board) => void;
 }
 
 export const useBoardsStore = create<BoardsState>()(
   persist(
     (set) => ({
       boards: baordsJson.boards,
-      activeBoard: baordsJson.boards.length > 0 ? baordsJson.boards[0].name : null,
-      addNewBoard: (newboardTitle) =>
+      sideBarIsCLosed: false,
+      activeBoardName:
+        baordsJson.boards.length > 0 ? baordsJson.boards[0].name : null,
+      activeBoard: baordsJson.boards.length > 0 ? baordsJson.boards[0] : null,
+        addNewBoard: (newboardTitle) =>
         set((current) => {
           const newBoardsList = [...current.boards];
           newBoardsList.push({
@@ -24,8 +30,11 @@ export const useBoardsStore = create<BoardsState>()(
           });
           return { boards: newBoardsList };
         }),
+      openCloseSideBar: () =>
+        set((current) => ({ sideBarIsCLosed: current.sideBarIsCLosed ? false : true })),
       changeActiveBoard: (newActiveBoard) =>
         set(() => ({
+          activeBoardName: newActiveBoard.name,
           activeBoard: newActiveBoard,
         })),
     }),

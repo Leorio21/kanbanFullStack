@@ -10,7 +10,7 @@ function Logo() {
         <div className={classNames(`${styles.bar} ${styles.bar2}`)}> </div>
         <div className={classNames(`${styles.bar} ${styles.bar3}`)}> </div>
       </div>
-        <h1>kanban</h1>
+        <p className={classNames(styles.title)}>kanban</p>
     </div>
   );
 }

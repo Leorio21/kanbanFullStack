@@ -1,8 +1,9 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 155px;
+  gap: 20px;
+  width: 300px;
+  padding: 34px;
 }
 
 .barContainer {
@@ -28,4 +29,9 @@
 
 .bar3 {
   background: rgba(var(--purple), .5);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
 }
