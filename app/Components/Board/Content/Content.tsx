@@ -1,11 +1,26 @@
-import React from 'react'
-import classNames from 'classnames'
-import styles from './Content.module.css'
+import React from "react";
+import classNames from "classnames";
+import styles from "./Content.module.css";
+import { useBoardsStore } from "@/app/Stores/useBoards";
+import Empty from "./Empty/Empty";
+import Column from "./Column/Column";
 
 function Content() {
+  const columnColor = ["blue", "purple", "green", "red", "yellow"];
+  const activeBoard = useBoardsStore((state) => state.activeBoard);
+
+  if (activeBoard?.columns.length === 0) {
+    return <Empty />;
+  }
+
   return (
-    <div className={classNames(styles.container)}>Content</div>
-  )
+    <div className={classNames(styles.container)}>
+      {activeBoard?.columns.map((column, index) => (
+        <Column key={column.name} column={column} color={columnColor[index]} />
+      ))}
+      <Column />
+    </div>
+  );
 }
 
-export default Content
+export default Content;

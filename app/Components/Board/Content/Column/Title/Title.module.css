@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  color: rgb(var(--grey));
+  font-size: var(--font--medium);;
+  font-weight: bold;
+}
+
+.point {
+  height: 15px;
+  width: 15px;
+  border-radius: 25px;
+}
+
+.green {
+  background: rgb(103, 226, 174);
+}
+
+.purple {
+  background: rgb(132, 113, 242);
+}
+
+.blue {
+  background: rgb(73, 196, 229);
+}
+
+.red {
+  background: rgb(244, 69, 69);
+}
+
+.yellow {
+  background: rgb(251, 255, 74);
+}

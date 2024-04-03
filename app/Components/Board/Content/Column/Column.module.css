@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  width: 280px;
+  border-radius: 6px;
+  color: var(--secondary-text-color);
+}
+
+.column {
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.newColumn {
+  align-items: center;
+  justify-content: center;
+  margin-top: 39px;
+  background: var(--newColumn-background);
+  cursor: pointer;
+  font-size: var(--font--extra-large);
+  font-weight: bold;
+}
+
+.newColumn:hover {
+  color: rgb(var(--purple));
+}

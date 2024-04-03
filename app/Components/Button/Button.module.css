@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
   border-radius: 25px;
   padding: 10px 20px;
   cursor: pointer;
@@ -9,15 +10,15 @@
 }
 
 .large {
-  font-size: 18px;
+  font-size: var(--font--large);;
 }
 
 .medium {
-  font-size: 15px;
+  font-size: var(--font--medium);;
 }
 
 .small {
-  font-size: 12px;
+  font-size: var(--font--small);;
 }
 
 .purple {
@@ -45,4 +46,9 @@
 
 .red:hover {
   background: var(--button-background-color--red--hover);
+}
+
+.disable {
+  filter: opacity(0.5);
+  pointer-events: none;
 }

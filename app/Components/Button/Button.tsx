@@ -7,11 +7,21 @@ const cx = classNames.bind(styles);
 type ButtonProps = {
   color: string;
   size?: string;
+  disable?: boolean;
 } & ComponentPropsWithoutRef<"div">;
 
-function Button({ color, size = "small", children, ...props }: ButtonProps) {
+function Button({
+  color,
+  size = "small",
+  disable = false,
+  children,
+  ...props
+}: ButtonProps) {
   return (
-    <div className={cx("container", color, size)} {...props}>
+    <div
+      className={cx("container", color, size, { disable: disable })}
+      {...props}
+    >
       {children}
     </div>
   );

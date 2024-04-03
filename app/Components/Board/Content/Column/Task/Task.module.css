@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 20px 15px;
+  background: var(--secondary-background);
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.title {
+  color: var(--primary-text-color);
+  font-size: var(--font--medium);
+}
+
+.subtask {
+  color: var(--secondary-text-color);
+  font-size: var(--font--small);;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.container:hover .title {
+  color: rgb(var(--purple));
+}

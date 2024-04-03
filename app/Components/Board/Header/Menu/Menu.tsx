@@ -1,7 +1,7 @@
+import React from "react";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import classNames from "classnames";
 import styles from "./Menu.module.css";
-import React from "react";
 import Options from "./Options/Options";
 
 function Menu() {
