@@ -14,6 +14,10 @@ function Options() {
     setMenuIsOpen((current) => !current);
   };
 
+  if (!activeBoard) {
+    return "Loading";
+  }
+
   return (
     <div className={classNames(styles.container)}>
       <Button
