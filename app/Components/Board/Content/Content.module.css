@@ -4,7 +4,6 @@
   height: 100%;
   width: 100%;
   border: 1px solid var(--board-content--border);
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow: auto;
   padding: 25px;
 }

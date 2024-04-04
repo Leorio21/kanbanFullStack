@@ -1,6 +1,7 @@
 .container {
   display: flex;
   width: 280px;
+  min-width: 208px;
   border-radius: 6px;
   color: var(--secondary-text-color);
 }
@@ -17,7 +18,7 @@
   margin-top: 39px;
   background: var(--newColumn-background);
   cursor: pointer;
-  font-size: var(--font--extra-large);
+  font-size: var(--font--large);
   font-weight: bold;
 }
 

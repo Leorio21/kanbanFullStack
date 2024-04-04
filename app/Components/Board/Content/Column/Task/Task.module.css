@@ -6,6 +6,7 @@
   padding: 20px 15px;
   background: var(--secondary-background);
   border-radius: 6px;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
 
@@ -16,7 +17,7 @@
 
 .subtask {
   color: var(--secondary-text-color);
-  font-size: var(--font--small);;
+  font-size: var(--font--small);
 }
 
 .container:hover {

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Board } from "../Types/Types";
-import baordsJson from "@/data.json";
+import boardsJson from "@/data.json";
 
 interface BoardsState {
   boards: Board[];
@@ -16,12 +16,12 @@ interface BoardsState {
 export const useBoardsStore = create<BoardsState>()(
   persist(
     (set) => ({
-      boards: baordsJson.boards,
+      boards: boardsJson.boards,
       sideBarIsCLosed: false,
       activeBoardName:
-        baordsJson.boards.length > 0 ? baordsJson.boards[0].name : null,
-      activeBoard: baordsJson.boards.length > 0 ? baordsJson.boards[0] : null,
-        addNewBoard: (newboardTitle) =>
+        boardsJson.boards.length > 0 ? boardsJson.boards[0].name : null,
+      activeBoard: boardsJson.boards.length > 0 ? boardsJson.boards[0] : null,
+      addNewBoard: (newboardTitle) =>
         set((current) => {
           const newBoardsList = [...current.boards];
           newBoardsList.push({
@@ -31,7 +31,9 @@ export const useBoardsStore = create<BoardsState>()(
           return { boards: newBoardsList };
         }),
       openCloseSideBar: () =>
-        set((current) => ({ sideBarIsCLosed: current.sideBarIsCLosed ? false : true })),
+        set((current) => ({
+          sideBarIsCLosed: current.sideBarIsCLosed ? false : true,
+        })),
       changeActiveBoard: (newActiveBoard) =>
         set(() => ({
           activeBoardName: newActiveBoard.name,
