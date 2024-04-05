@@ -12,13 +12,13 @@ type TaskProps = {
 
 function Task({ task }: TaskProps) {
   const [isOpenInfo, setIsOpenInfo] = useState(false);
-  const testRef = useRef<HTMLDivElement>(null);
+  const taskInfosRef = useRef<HTMLDivElement>(null);
 
   const openCloseTaskInfo = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    const div = event.target as HTMLDivElement;
-    if (!isOpenInfo || !testRef.current?.contains(div))
+    const elementClicked = event.target as HTMLDivElement;
+    if (!isOpenInfo || !taskInfosRef.current?.contains(elementClicked))
       setIsOpenInfo((current) => !current);
   };
 
@@ -32,10 +32,10 @@ function Task({ task }: TaskProps) {
         </p>
       </article>
       <div
-        onClick={openCloseTaskInfo}
         className={cx("formContainer", { active: isOpenInfo })}
+        onClick={openCloseTaskInfo}
       >
-        <FormTask ref={testRef} task={task} />
+        <FormTask ref={taskInfosRef} task={task} />
       </div>
     </>
   );

@@ -1,8 +1,10 @@
 .container {
   display: flex;
   flex: auto;
+  align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  height: 100%;
+  padding: 0 20px;
 }
 
 .title {
@@ -17,4 +19,5 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  height: 100%;
 }
