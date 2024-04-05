@@ -10,13 +10,15 @@ import styles from "./ElipsisMenu.module.css";
 
 const cx = classNames.bind(styles);
 
-type ElipsisMenuProps = ComponentPropsWithoutRef<"div">;
+type ElipsisMenuProps = {
+  position: string;
+} & ComponentPropsWithoutRef<"div">;
 
 type ItemProps = {
   type?: string;
 } & ComponentPropsWithoutRef<"div">;
 
-export function ElipsisMenu({ children }: ElipsisMenuProps) {
+export function ElipsisMenu({ position, children }: ElipsisMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const subMenuRef = useRef<HTMLDivElement>(null);
   const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
@@ -46,8 +48,9 @@ export function ElipsisMenu({ children }: ElipsisMenuProps) {
   return (
     <>
       <svg
-        width="5"
+        width="30"
         height="20"
+        viewBox="-7.692 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
         className={cx("button")}
         onClick={openCloseSubMenu}
@@ -63,7 +66,7 @@ export function ElipsisMenu({ children }: ElipsisMenuProps) {
         className={cx("container", { hide: !subMenuIsOpen })}
         onClick={openCloseSubMenu}
       >
-        <div ref={subMenuRef} className={cx("subMenuContainer")}>
+        <div ref={subMenuRef} className={cx("subMenuContainer", position)}>
           {children}
         </div>
       </div>

@@ -5,3 +5,65 @@
   background: var(--secondary-background);
   color: var(--primary-text-color);
 }
+
+.button {
+  cursor: pointer;
+}
+
+.titleContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  heigth: 100%;
+  min-height: 70px;
+  width: 100%;
+}
+
+.title {
+  flex: auto;
+  padding-right: 10px;
+  color: var(--primary-text-color);
+  font-size: var(--font--large);
+  font-weight: bold;
+}
+
+.subTitle {
+  padding: 10px 0;
+  color: var(--primary-text-color);
+  font-size: var(--font--medium);
+  /* font-weight: bold; */
+}
+
+.description {
+  width: 100%;
+  padding: 20px 0;
+  color: var(--secondary-text-color);
+  font-size: var(--font--medium);
+  line-height: 23px;
+}
+
+.subtasksContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.statusContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.currentStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  width: 100%;
+  border: 1px solid rgb(var(--grey));
+  border-radius: 5px;
+  padding: 0 15px;
+  font-size: var(--font--medium);
+}
+
+.statusList {
+}

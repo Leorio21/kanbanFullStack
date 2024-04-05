@@ -14,8 +14,6 @@
 
 .subMenuContainer {
   position: absolute;
-  top: 65px;
-  right: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,6 +23,16 @@
   box-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
   padding: 10px;
   background: var(--primary-background);
+}
+
+.board {
+  top: 65px;
+  right: 10px;
+}
+
+.task {
+  top: 60px;
+  right: -96px;
 }
 
 .hide {

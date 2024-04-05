@@ -20,7 +20,7 @@ function Menu() {
           >
             + Ajouter une tâche
           </Button>
-          <ElipsisMenu>
+          <ElipsisMenu position="board">
             <Item>Modifer tableau</Item>
             <Item type="delete">Supprimer tableau</Item>
           </ElipsisMenu>
