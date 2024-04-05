@@ -2,16 +2,29 @@ import React from "react";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import classNames from "classnames";
 import styles from "./Menu.module.css";
-import Options from "./Options/Options";
+import { ElipsisMenu, Item } from "@/app/Components/ElipsisMenu/ElipsisMenu";
+import Button from "@/app/Components/Button/Button";
 
 function Menu() {
-  const board = useBoardsStore((state) => state.activeBoard);
+  const activeBoard = useBoardsStore((state) => state.activeBoard);
 
-  if (board) {
+  if (activeBoard) {
     return (
       <div className={classNames(styles.container)}>
-        <p className={classNames(styles.title)}>{board.name}</p>
-        <Options />
+        <p className={classNames(styles.title)}>{activeBoard.name}</p>
+        <div className={classNames(styles.buttonContainer)}>
+          <Button
+            color="purple"
+            size="medium"
+            disable={activeBoard?.columns.length === 0}
+          >
+            + Ajouter une tâche
+          </Button>
+          <ElipsisMenu>
+            <Item>Modifer tableau</Item>
+            <Item type="delete">Supprimer tableau</Item>
+          </ElipsisMenu>
+        </div>
       </div>
     );
   }

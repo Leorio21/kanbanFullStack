@@ -27,3 +27,19 @@
 .container:hover .title {
   color: rgb(var(--purple));
 }
+
+.formContainer {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}

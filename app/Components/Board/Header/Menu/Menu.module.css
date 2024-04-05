@@ -8,6 +8,13 @@
 .title {
   display: flex;
   align-items: center;
-  font-size: var(--font--large);;
+  font-size: var(--font--large);
   font-weight: bold;
+}
+
+.buttonContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }

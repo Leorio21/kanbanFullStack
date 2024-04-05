@@ -7,15 +7,15 @@ import Column from "./Column/Column";
 
 function Content() {
   const columnColor = ["blue", "purple", "green", "red", "yellow"];
-  const activeBoard = useBoardsStore((state) => state.activeBoard);
+  const activeColumns = useBoardsStore((state) => state.activeColumns);
 
-  if (activeBoard?.columns.length === 0) {
+  if (activeColumns.length === 0) {
     return <Empty />;
   }
 
   return (
     <div className={classNames(styles.container)}>
-      {activeBoard?.columns.map((column, index) => (
+      {activeColumns.map((column, index) => (
         <Column key={column.name} column={column} color={columnColor[index]} />
       ))}
       <Column />

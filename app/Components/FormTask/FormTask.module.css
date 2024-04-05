@@ -1,0 +1,7 @@
+.container {
+  width: 480px;
+  padding: 40px 30px;
+  border-radius: 6px;
+  background: var(--secondary-background);
+  color: var(--primary-text-color);
+}

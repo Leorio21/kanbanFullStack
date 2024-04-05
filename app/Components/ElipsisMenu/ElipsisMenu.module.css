@@ -1,0 +1,41 @@
+/* ElipsisMenu */
+.button {
+  cursor: pointer;
+}
+
+/* SubMenu */
+.subMenuContainer {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 192px;
+  border-radius: 10px;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  background: var(--primary-background);
+}
+
+.hide {
+  display: none;
+}
+
+/* Item */
+.link {
+  cursor: pointer;
+}
+
+.link:hover {
+  background: rgba(var(--purple), 0.2);
+}
+
+.standard {
+  color: rgb(var(--grey));
+}
+
+.delete {
+  color: rgb(var(--red));
+}
