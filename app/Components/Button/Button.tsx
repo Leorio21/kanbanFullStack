@@ -8,18 +8,23 @@ type ButtonProps = {
   color: string;
   size?: string;
   disable?: boolean;
+  width?: string;
 } & ComponentPropsWithoutRef<"div">;
 
 function Button({
   color,
   size = "small",
   disable = false,
+  width = "",
   children,
   ...props
 }: ButtonProps) {
   return (
     <div
-      className={cx("container", color, size, { disable: disable })}
+      className={cx("container", color, size, {
+        disable: disable,
+        widthMax: width === "auto",
+      })}
       {...props}
     >
       {children}

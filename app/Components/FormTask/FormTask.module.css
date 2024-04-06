@@ -10,6 +10,14 @@
   cursor: pointer;
 }
 
+.chevron {
+  transition: transform 0.1s ease-in-out;
+}
+
+.rotateChevron {
+  transform: rotateZ(180deg);
+}
+
 .titleContainer {
   position: relative;
   display: flex;
@@ -49,8 +57,10 @@
 }
 
 .statusContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
+  padding: 10px 0;
 }
 
 .currentStatus {
@@ -65,5 +75,44 @@
   font-size: var(--font--medium);
 }
 
+.currentStatus:hover {
+  border: 1px solid rgb(var(--purple));
+}
+
+.currentStatusActive {
+  border: 1px solid rgb(var(--purple));
+}
+
 .statusList {
+  position: absolute;
+  bottom: -145px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 5px;
+  padding: 15px;
+  background: var(--primary-background);
+}
+
+.hidden {
+  display: none;
+}
+
+.statusListItem {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.statusListItem:hover {
+  background: rgba(var(--purple), 0.2);
+}
+
+.deleteCancelButtonContainer {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  gap: 20px;
+  width: 100%;
 }

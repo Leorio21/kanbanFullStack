@@ -41,6 +41,8 @@
 
 /* Item */
 .link {
+  border-radius: 6px;
+  padding: 10px;
   cursor: pointer;
 }
 

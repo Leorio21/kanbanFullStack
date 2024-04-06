@@ -2,23 +2,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
   border-radius: 25px;
   padding: 10px 20px;
   cursor: pointer;
   font-weight: bold;
 }
 
+.widthMax {
+  width: 100%;
+}
+
 .large {
-  font-size: var(--font--large);;
+  font-size: var(--font--large);
 }
 
 .medium {
-  font-size: var(--font--medium);;
+  font-size: var(--font--medium);
 }
 
 .small {
-  font-size: var(--font--small);;
+  font-size: var(--font--small);
 }
 
 .purple {
