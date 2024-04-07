@@ -51,21 +51,22 @@
 .subTitle {
   padding: 10px 0;
   color: var(--primary-text-color);
-  font-size: var(--font--medium);
-  /* font-weight: bold; */
+  font-size: var(--font--small);
+  font-weight: bold;
 }
 
 .description {
   width: 100%;
   padding: 20px 0;
   color: var(--secondary-text-color);
-  font-size: var(--font--medium);
+  font-size: var(--font--small);
   line-height: 23px;
 }
 
 .subtasksContainer {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .statusContainer {
@@ -81,7 +82,7 @@
   justify-content: space-between;
   height: 40px;
   width: 100%;
-  border: 1px solid rgb(var(--grey));
+  border: 1px solid rgb(var(--darkGrey--light));
   border-radius: 5px;
   padding: 0 15px;
   font-size: var(--font--medium);

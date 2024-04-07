@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 40px;
+  border-radius: 6px;
+  padding: 10px;
+  background: var(--primary-background);
+  font-size: var(--font--small);
+  font-weight: bold;
+}
+
+.container:hover {
+  background: rgba(var(--purple), 0.3);
+}
+
+.checkBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  min-width: 16px;
+  max-width: 16px;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  border: 1px solid rgb(var(--darkGrey--light));
+  background: var(--secondary-background);
+}
+
+.check {
+  background: rgb(var(--purple));
+}
+
+.title {
+  color: var(--primary-text-color);
+}
+
+.completed {
+  color: var(--secondary-text-color);
+  text-decoration-line: line-through;
+}

@@ -5,6 +5,7 @@ import { ElipsisMenu, Item } from "../ElipsisMenu/ElipsisMenu";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import Delete from "../Delete/Delete";
 import Button from "../Button/Button";
+import SubTask from "../Board/Content/Column/Task/SubTask/SubTask";
 
 const cx = classNames.bind(styles);
 
@@ -73,6 +74,9 @@ function FormTask() {
                 }{" "}
                 / {activeTask.subtasks.length})
               </p>
+              {activeTask.subtasks.map((subtask, index) => (
+                <SubTask key={index} {...subtask} />
+              ))}
             </div>
             <div ref={statusRef} className={cx("statusContainer")}>
               <p className={cx("subTitle")}>Status Actuel</p>
