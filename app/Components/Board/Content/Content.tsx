@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import classNames from "classnames";
 import styles from "./Content.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import Empty from "./Empty/Empty";
 import Column from "./Column/Column";
+import FormTask from "../../FormTask/FormTask";
 
 function Content() {
   const columnColor = ["blue", "purple", "green", "red", "yellow"];
@@ -14,12 +15,19 @@ function Content() {
   }
 
   return (
-    <div className={classNames(styles.container)}>
-      {activeColumns.map((column, index) => (
-        <Column key={column.name} column={column} color={columnColor[index]} />
-      ))}
-      <Column />
-    </div>
+    <>
+      <div className={classNames(styles.container)}>
+        {activeColumns.map((column, index) => (
+          <Column
+            key={column.name}
+            column={column}
+            color={columnColor[index]}
+          />
+        ))}
+        <Column />
+      </div>
+      <FormTask />
+    </>
   );
 }
 

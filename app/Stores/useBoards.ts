@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Board, Column } from "../Types/Types";
+import type { Board, Column, Task } from "../Types/Types";
 import boardsJson from "@/data.json";
 
 interface BoardsState {
@@ -9,9 +9,11 @@ interface BoardsState {
   activeBoard: Board | null;
   activeColumnsName: string[];
   activeColumns: Column[];
+  activeTask: Task | null;
   addNewBoard: (newboardTitle: string) => void;
   openCloseSideBar: () => void;
   changeActiveBoard: (newActiveBoard: Board) => void;
+  changeActiveTask: (newActiveTask: Task | null) => void;
 }
 
 export const useBoardsStore = create<BoardsState>()((set) => ({
@@ -28,6 +30,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
     boardsJson.boards.length > 0 && boardsJson.boards[0].columns.length > 0
       ? [...boardsJson.boards[0].columns]
       : [],
+  activeTask: null,
   addNewBoard: (newboardTitle) =>
     set((current) => {
       const newBoardsList = [...current.boards];
@@ -46,6 +49,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
       activeBoardName: newActiveBoard.name,
       activeBoard: newActiveBoard,
       activeColumnsName: [...newActiveBoard.columns.map((col) => col.name)],
-      activeColumns: [...newActiveBoard.columns]
+      activeColumns: [...newActiveBoard.columns],
     })),
+  changeActiveTask: (newActiveTask) =>
+    set(() => ({ activeTask: newActiveTask })),
 }));

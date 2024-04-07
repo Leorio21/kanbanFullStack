@@ -34,19 +34,17 @@ function Menu() {
           </ElipsisMenu>
         </div>
         <Delete isOpen={isOpenDeleteForm} type="board" name={activeBoard.name}>
-          <div className={classNames(styles.deleteCancelButtonContainer)}>
-            <Button color="red" size="medium" width="max">
-              Supprimer
-            </Button>
-            <Button
-              color="white"
-              size="medium"
-              width="auto"
-              onClick={() => openCloseDeleteForm(false)}
-            >
-              Annuler
-            </Button>
-          </div>
+          <Button color="red" size="medium" width="max">
+            Supprimer
+          </Button>
+          <Button
+            color="white"
+            size="medium"
+            width="auto"
+            onClick={() => openCloseDeleteForm(false)}
+          >
+            Annuler
+          </Button>
         </Delete>
       </div>
     );

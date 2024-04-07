@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { ComponentPropsWithRef } from "react";
 import classNames from "classnames/bind";
 import styles from "./Delete.module.css";
 
@@ -8,7 +8,7 @@ type DeleteProps = {
   isOpen: boolean;
   type: "board" | "task";
   name: string;
-} & PropsWithChildren;
+} & ComponentPropsWithRef<"div">;
 
 function Delete({ isOpen, name, type, children }: DeleteProps) {
   const title = { board: "ce tableau", task: "cette tâche" };
@@ -29,7 +29,7 @@ function Delete({ isOpen, name, type, children }: DeleteProps) {
           Êtes vous sûr de vouloir effacer {message[type]} de manière
           irréversible.
         </p>
-        {children}
+        <div className={cx("deleteCancelButtonContainer")}>{children}</div>
       </div>
     </div>
   );
