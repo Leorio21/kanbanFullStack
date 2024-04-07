@@ -1,7 +1,7 @@
 .container {
   display: flex;
-  width: 280px;
-  min-width: 208px;
+  width: var(--column-width);
+  min-width: var(--column-width);
   border-radius: 6px;
   color: var(--secondary-text-color);
 }
@@ -15,7 +15,6 @@
 .newColumn {
   align-items: center;
   justify-content: center;
-  margin-top: 39px;
   background: var(--newColumn-background);
   cursor: pointer;
   font-size: var(--font--large);

@@ -6,15 +6,15 @@ const cx = classNames.bind(styles);
 
 type TitleProps = {
   color: string;
-  name: string;
+  columnName: string;
   numberOfTask: number;
 };
 
-function Title({ color, name, numberOfTask }: TitleProps) {
+function Title({ color, columnName, numberOfTask }: TitleProps) {
   return (
     <div className={cx("container")}>
       <div className={cx("point", color)}></div>
-      {name.toUpperCase()} ({numberOfTask})
+      {columnName.toUpperCase()} ({numberOfTask})
     </div>
   );
 }
