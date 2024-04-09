@@ -9,6 +9,7 @@ import Delete from "@/app/Components/Delete/Delete";
 function Menu() {
   const [isOpenDeleteForm, setIsOpenDeleteForm] = useState(false);
   const activeBoard = useBoardsStore((state) => state.activeBoard);
+  const openAddBoarForm = useBoardsStore((state) => state.openBoardForm);
 
   const openCloseDeleteForm = (newValue: boolean) => {
     setIsOpenDeleteForm(newValue);
@@ -27,7 +28,9 @@ function Menu() {
             + Ajouter une tâche
           </Button>
           <ElipsisMenu position="board">
-            <Item>Modifer tableau</Item>
+            <Item onClick={() => openAddBoarForm(true, "modify")}>
+              Modifer tableau
+            </Item>
             <Item type="delete" onClick={() => openCloseDeleteForm(true)}>
               Supprimer tableau
             </Item>

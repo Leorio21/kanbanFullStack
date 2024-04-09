@@ -10,13 +10,13 @@ interface BoardsState {
   activeColumnsName: string[];
   activeColumns: Column[];
   activeTask: Task | null;
-  displayAddBoardForm: boolean;
+  displayAddBoardForm: { isOpen: boolean; type: "new" | "modify" | "" };
   displayAddTaskForm: boolean;
   addNewBoard: (newboardTitle: string) => void;
   openCloseSideBar: () => void;
   changeActiveBoard: (newActiveBoard: Board) => void;
   changeActiveTask: (newActiveTask: Task | null) => void;
-  openBoardForm: (newStatus: boolean) => void;
+  openBoardForm: (newStatus: boolean, newType?: "new" | "modify" | "") => void;
   openTaskForm: (newStatus: boolean) => void;
 }
 
@@ -35,7 +35,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
       ? [...boardsJson.boards[0].columns]
       : [],
   activeTask: null,
-  displayAddBoardForm: false,
+  displayAddBoardForm: { isOpen: false, type: "" },
   displayAddTaskForm: false,
   addNewBoard: (newboardTitle) =>
     set((current) => {
@@ -59,8 +59,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
     })),
   changeActiveTask: (newActiveTask) =>
     set(() => ({ activeTask: newActiveTask })),
-  openBoardForm: (newStatus: boolean) =>
-    set(() => ({ displayAddBoardForm: newStatus })),
+  openBoardForm: (newStatus: boolean, newType = "") =>
+    set(() => ({ displayAddBoardForm: { isOpen: newStatus, type: newType } })),
   openTaskForm: (newStatus: boolean) =>
     set(() => ({ displayAddTaskForm: newStatus })),
 }));

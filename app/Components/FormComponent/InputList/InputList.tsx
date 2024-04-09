@@ -3,17 +3,37 @@ import classNames from "classnames";
 import styles from "./InputList.module.css";
 import Input from "../Input/Input";
 import Button from "../../Button/Button";
+import { Column, SubTask } from "@/app/Types/Types";
 
 type InputListProps = {
   title: string;
+  columns?: Column[] | undefined;
+  subtasks?: SubTask[] | undefined;
 };
 
-function InputList({ title }: InputListProps) {
-  const [inputs, setInputs] = useState([
-    { id: 0, jsx: <Input type="text" /> },
-    { id: 1, jsx: <Input type="text" /> },
-  ]);
-  const [nextId, setNextId] = useState(2);
+function InputList({ title, columns, subtasks }: InputListProps) {
+  const loadInputValue = () => {
+    if (columns) {
+      return columns.map((column, index) => {
+        return { id: index, jsx: <Input type="text" content={column.name} /> };
+      });
+    }
+    if (subtasks) {
+      return subtasks.map((subtask, index) => {
+        return {
+          id: index,
+          jsx: <Input type="text" content={subtask.title} />,
+        };
+      });
+    }
+    return [
+      { id: 0, jsx: <Input type="text" /> },
+      { id: 1, jsx: <Input type="text" /> },
+    ];
+  };
+
+  const [inputs, setInputs] = useState(loadInputValue());
+  const [nextId, setNextId] = useState(inputs.length);
 
   const addColumnInput = () => {
     setInputs((current) => [
@@ -33,10 +53,10 @@ function InputList({ title }: InputListProps) {
 
   return (
     <>
-      <div className={classNames(styles.columnsInput)}>
+      <div className={classNames(styles.inputList)}>
         {title}
         {inputs.map((input, index) => (
-          <span key={input.id} className={classNames(styles.columnInput)}>
+          <span key={input.id} className={classNames(styles.input)}>
             {input.jsx}{" "}
             <svg
               width="15"

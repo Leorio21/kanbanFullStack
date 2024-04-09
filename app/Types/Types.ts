@@ -29,10 +29,15 @@ export type Column = {
 
 export type Task = {
   title: string;
-    description: string;
-    status: string;
-    subtasks: {
-      title: string;
-      isCompleted: boolean;
-    }[];
-}
+  description: string;
+  status: string;
+  subtasks: {
+    title: string;
+    isCompleted: boolean;
+  }[];
+};
+
+export type SubTask = {
+  title: string;
+  isCompleted: boolean;
+};

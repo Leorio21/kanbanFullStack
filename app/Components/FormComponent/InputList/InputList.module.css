@@ -1,11 +1,11 @@
-.columnsInput {
+.inputList {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
 }
 
-.columnInput {
+.input {
   display: flex;
   align-items: center;
   gap: 15px;

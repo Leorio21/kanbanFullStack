@@ -5,7 +5,7 @@ import { ElipsisMenu, Item } from "../ElipsisMenu/ElipsisMenu";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import Delete from "../Delete/Delete";
 import Button from "../Button/Button";
-import SubTask from "../Board/Content/Column/Task/SubTask/SubTask";
+import SubTask from "./SubTask/SubTask";
 
 const cx = classNames.bind(styles);
 
