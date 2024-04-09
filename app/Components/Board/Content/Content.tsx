@@ -11,6 +11,11 @@ function Content() {
   const columnColor = ["blue", "purple", "green", "red", "yellow"];
   const activeColumns = useBoardsStore((state) => state.activeColumns);
   const activeColumnsName = useBoardsStore((state) => state.activeColumnsName);
+  const activeBoard = useBoardsStore((state) => state.activeBoard);
+
+  if (!activeBoard) {
+    return;
+  }
 
   if (activeColumns.length === 0) {
     return <Empty />;

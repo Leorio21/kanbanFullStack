@@ -10,9 +10,17 @@ function Menu() {
   const [isOpenDeleteForm, setIsOpenDeleteForm] = useState(false);
   const activeBoard = useBoardsStore((state) => state.activeBoard);
   const openAddBoarForm = useBoardsStore((state) => state.openBoardForm);
+  const deleteBoard = useBoardsStore((state) => state.deleteBoard);
 
   const openDeleteForm = (newValue: boolean) => {
     setIsOpenDeleteForm(newValue);
+  };
+
+  const onDeleteHandler = () => {
+    if (activeBoard) {
+      deleteBoard(activeBoard.name);
+      openDeleteForm(false);
+    }
   };
 
   if (activeBoard) {
@@ -42,7 +50,12 @@ function Menu() {
             type="board"
             name={activeBoard.name}
           >
-            <Button color="red" size="medium" width="max">
+            <Button
+              onClick={onDeleteHandler}
+              color="red"
+              size="medium"
+              width="max"
+            >
               Supprimer
             </Button>
             <Button

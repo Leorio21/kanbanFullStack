@@ -26,7 +26,7 @@ function Delete({ isOpen, name, type, children }: DeleteProps) {
       <div className={cx("messageContainer")}>
         <p className={cx("title")}>Supprimer {title[type]}</p>
         <p className={cx("message")}>
-          Êtes vous sûr de vouloir effacer {message[type]} de manière
+          Êtes vous sûr de vouloir effacer {message[type]}. Cette action est
           irréversible.
         </p>
         <div className={cx("deleteCancelButtonContainer")}>{children}</div>

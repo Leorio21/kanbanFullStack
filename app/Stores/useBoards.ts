@@ -13,6 +13,7 @@ interface BoardsState {
   displayAddBoardForm: { isOpen: boolean; type: "new" | "modify" | "" };
   displayAddTaskForm: boolean;
   addNewBoard: (newboardTitle: string) => void;
+  deleteBoard: (nameOfBoardToDelete: string) => void;
   openCloseSideBar: () => void;
   changeActiveBoard: (newActiveBoard: Board) => void;
   changeActiveTask: (newActiveTask: Task | null) => void;
@@ -39,13 +40,23 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   displayAddTaskForm: false,
   addNewBoard: (newboardTitle) =>
     set((current) => {
-      const newBoardsList = [...current.boards];
-      newBoardsList.push({
+      const newBoards = [...current.boards];
+      newBoards.push({
         name: newboardTitle,
         columns: [],
       });
-      return { boards: newBoardsList };
+      return { boards: newBoards };
     }),
+  deleteBoard: (nameOfBoardToDelete) =>
+    set((current) => ({
+      boards: current.boards.filter(
+        (board) => board.name !== nameOfBoardToDelete
+      ),
+      activeBoardName: null,
+      activeBoard: null,
+      activeColumnsName: [],
+      activeColumns: [],
+    })),
   openCloseSideBar: () =>
     set((current) => ({
       sideBarIsCLosed: current.sideBarIsCLosed ? false : true,
