@@ -10,10 +10,14 @@ interface BoardsState {
   activeColumnsName: string[];
   activeColumns: Column[];
   activeTask: Task | null;
+  displayAddBoardForm: boolean;
+  displayAddTaskForm: boolean;
   addNewBoard: (newboardTitle: string) => void;
   openCloseSideBar: () => void;
   changeActiveBoard: (newActiveBoard: Board) => void;
   changeActiveTask: (newActiveTask: Task | null) => void;
+  openBoardForm: (newStatus: boolean) => void;
+  openTaskForm: (newStatus: boolean) => void;
 }
 
 export const useBoardsStore = create<BoardsState>()((set) => ({
@@ -31,6 +35,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
       ? [...boardsJson.boards[0].columns]
       : [],
   activeTask: null,
+  displayAddBoardForm: false,
+  displayAddTaskForm: false,
   addNewBoard: (newboardTitle) =>
     set((current) => {
       const newBoardsList = [...current.boards];
@@ -53,4 +59,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
     })),
   changeActiveTask: (newActiveTask) =>
     set(() => ({ activeTask: newActiveTask })),
+  openBoardForm: (newStatus: boolean) =>
+    set(() => ({ displayAddBoardForm: newStatus })),
+  openTaskForm: (newStatus: boolean) =>
+    set(() => ({ displayAddTaskForm: newStatus })),
 }));

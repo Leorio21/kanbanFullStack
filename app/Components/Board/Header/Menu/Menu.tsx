@@ -33,19 +33,25 @@ function Menu() {
             </Item>
           </ElipsisMenu>
         </div>
-        <Delete isOpen={isOpenDeleteForm} type="board" name={activeBoard.name}>
-          <Button color="red" size="medium" width="max">
-            Supprimer
-          </Button>
-          <Button
-            color="white"
-            size="medium"
-            width="auto"
-            onClick={() => openCloseDeleteForm(false)}
+        {isOpenDeleteForm && (
+          <Delete
+            isOpen={isOpenDeleteForm}
+            type="board"
+            name={activeBoard.name}
           >
-            Annuler
-          </Button>
-        </Delete>
+            <Button color="red" size="medium" width="max">
+              Supprimer
+            </Button>
+            <Button
+              color="white"
+              size="medium"
+              width="auto"
+              onClick={() => openCloseDeleteForm(false)}
+            >
+              Annuler
+            </Button>
+          </Delete>
+        )}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import styles from "./Content.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import Empty from "./Empty/Empty";
 import Column from "./Column/Column";
-import FormTask from "../../FormTask/FormTask";
+import ViewTask from "../../ViewTask/ViewTask";
 import Title from "./Title/Title";
 
 function Content() {
@@ -34,7 +34,7 @@ function Content() {
         ))}
         <Column />
       </div>
-      <FormTask />
+      <ViewTask />
     </div>
   );
 }

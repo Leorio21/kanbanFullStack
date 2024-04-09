@@ -20,7 +20,7 @@ function Delete({ isOpen, name, type, children }: DeleteProps) {
     <div
       className={cx("container", {
         backdrop: type === "board",
-        hidden: !isOpen,
+        // hidden: !isOpen,
       })}
     >
       <div className={cx("messageContainer")}>

@@ -1,0 +1,17 @@
+.columnsInput {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.columnInput {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.button {
+  cursor: pointer;
+}

@@ -1,0 +1,124 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.taskContainer {
+  width: 480px;
+  padding: 40px 30px;
+  border-radius: 6px;
+  background: var(--secondary-background);
+  color: var(--primary-text-color);
+}
+
+.button {
+  cursor: pointer;
+}
+
+.chevron {
+  transition: transform 0.1s ease-in-out;
+}
+
+.rotateChevron {
+  transform: rotateZ(180deg);
+}
+
+.titleContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  heigth: 100%;
+  min-height: 70px;
+  width: 100%;
+}
+
+.title {
+  flex: auto;
+  padding-right: 10px;
+  color: var(--primary-text-color);
+  font-size: var(--font--large);
+  font-weight: bold;
+}
+
+.subTitle {
+  padding: 10px 0;
+  color: var(--primary-text-color);
+  font-size: var(--font--small);
+  font-weight: bold;
+}
+
+.description {
+  width: 100%;
+  padding: 20px 0;
+  color: var(--secondary-text-color);
+  font-size: var(--font--small);
+  line-height: 23px;
+}
+
+.subtasksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.statusContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.currentStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  width: 100%;
+  border: 1px solid rgb(var(--darkGrey--light));
+  border-radius: 5px;
+  padding: 0 15px;
+  font-size: var(--font--medium);
+}
+
+.currentStatus:hover {
+  border: 1px solid rgb(var(--purple));
+}
+
+.currentStatusActive {
+  border: 1px solid rgb(var(--purple));
+}
+
+.statusList {
+  position: absolute;
+  bottom: -145px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 5px;
+  padding: 15px;
+  background: var(--primary-background);
+}
+
+.hidden {
+  display: none;
+}
+
+.statusListItem {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.statusListItem:hover {
+  background: rgba(var(--purple), 0.2);
+}
