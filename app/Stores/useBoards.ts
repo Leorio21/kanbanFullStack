@@ -57,6 +57,10 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
       activeColumnsName: [],
       activeColumns: [],
     })),
+  // deleteTask: (nameOfTaskToDelete) =>
+  //   set((current) => ({
+
+  //   })),
   openCloseSideBar: () =>
     set((current) => ({
       sideBarIsCLosed: current.sideBarIsCLosed ? false : true,

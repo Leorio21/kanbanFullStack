@@ -38,7 +38,7 @@ function FormBoard({ board }: FormBoardProps) {
         <InputList title="Colonnes" columns={board?.columns} />
 
         <Button color="purple" size="medium" width="auto">
-          Créer le tableau
+          {board ? "Modifier le tableau" : "Créer le tableau"}
         </Button>
       </form>
     </div>
