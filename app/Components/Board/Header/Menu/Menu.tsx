@@ -11,7 +11,7 @@ function Menu() {
   const activeBoard = useBoardsStore((state) => state.activeBoard);
   const openAddBoarForm = useBoardsStore((state) => state.openBoardForm);
 
-  const openCloseDeleteForm = (newValue: boolean) => {
+  const openDeleteForm = (newValue: boolean) => {
     setIsOpenDeleteForm(newValue);
   };
 
@@ -31,7 +31,7 @@ function Menu() {
             <Item onClick={() => openAddBoarForm(true, "modify")}>
               Modifer tableau
             </Item>
-            <Item type="delete" onClick={() => openCloseDeleteForm(true)}>
+            <Item type="delete" onClick={() => openDeleteForm(true)}>
               Supprimer tableau
             </Item>
           </ElipsisMenu>
@@ -49,7 +49,7 @@ function Menu() {
               color="white"
               size="medium"
               width="auto"
-              onClick={() => openCloseDeleteForm(false)}
+              onClick={() => openDeleteForm(false)}
             >
               Annuler
             </Button>
