@@ -19,7 +19,7 @@
   --secondary-background: rgb(var(--white--light));
 
   --primary-text-color: rgb(var(--black));
-  --secondary-text-color: rgb(var(--grey));
+  --secondary-font-color: rgb(var(--grey));
 
   --board-toggle--hover: rgba(var(--purple), 0.25);
   --board-content--border: rgb(var(--grey--light));
@@ -44,7 +44,7 @@
   --secondary-background: rgb(var(--darkGrey));
 
   --primary-text-color: rgb(var(--white));
-  --secondary-text-color: rgb(var(--grey));
+  --secondary-font-color: rgb(var(--grey));
 
   --board-toggle--hover: rgb(var(--white--light));
   --board-content--border: rgb(var(--darkGrey--light));
@@ -86,7 +86,7 @@ a {
     --secondary-background: rgb(var(--darkGrey));
 
     --primary-text-color: rgb(var(--white));
-    --secondary-text-color: rgb(var(--grey));
+    --secondary-font-color: rgb(var(--grey));
 
     --board-toggle--hover: rgb(var(--purple--light));
     --board-content--border: rgb(var(--darkGrey--light));

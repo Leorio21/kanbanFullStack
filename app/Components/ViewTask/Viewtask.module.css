@@ -58,7 +58,7 @@
 .description {
   width: 100%;
   padding: 20px 0;
-  color: var(--secondary-text-color);
+  color: var(--secondary-font-color);
   font-size: var(--font--small);
   line-height: 23px;
 }

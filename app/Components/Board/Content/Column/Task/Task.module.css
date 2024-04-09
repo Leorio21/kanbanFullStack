@@ -16,7 +16,7 @@
 }
 
 .subtask {
-  color: var(--secondary-text-color);
+  color: var(--secondary-font-color);
   font-size: var(--font--small);
 }
 

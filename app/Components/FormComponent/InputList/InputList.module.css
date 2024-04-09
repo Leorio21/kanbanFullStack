@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  color: var(--secondary-font-color);
+  font-weight: bold;
 }
 
 .input {

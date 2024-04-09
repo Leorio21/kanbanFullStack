@@ -37,6 +37,6 @@
 }
 
 .completed {
-  color: var(--secondary-text-color);
+  color: var(--secondary-font-color);
   text-decoration-line: line-through;
 }

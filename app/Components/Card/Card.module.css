@@ -6,9 +6,9 @@
   width: 276px;
   padding-left: 30px;
   border-radius: 0 25px 25px 0;
-  color: var(--secondary-text-color);
+  color: var(--secondary-font-color);
   cursor: pointer;
-  font-size: var(--font--large);;
+  font-size: var(--font--large);
   font-weight: bold;
 }
 
