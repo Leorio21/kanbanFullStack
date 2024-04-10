@@ -22,7 +22,7 @@ interface BoardsState {
   // addNewBoard: (newboardTitle: string) => void;
   deleteBoard: () => void;
   deleteTask: () => void;
-  // openCloseSideBar: () => void;
+  openCloseSideBar: () => void;
   changeActiveBoard: (newActiveBoard: number) => void;
   changeActiveTask: (newActiveTask: number | null) => void;
   openBoardForm: (newStatus: boolean, newType?: "new" | "modify" | "") => void;
