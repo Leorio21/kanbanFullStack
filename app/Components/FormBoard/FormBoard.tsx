@@ -5,7 +5,6 @@ import { useBoardsStore } from "@/app/Stores/useBoards";
 import Button from "../Button/Button";
 import Input from "../FormComponent/Input/Input";
 import InputList from "../FormComponent/InputList/InputList";
-import type { Board } from "@/app/Types/Types";
 
 type FormBoardProps = {
   boardId?: number;
@@ -32,7 +31,7 @@ function FormBoard({ boardId }: FormBoardProps) {
     <div className={classNames(styles.container)} onClick={closeForm}>
       <form ref={formRef} className={classNames(styles.formContainer)}>
         <p className={classNames(styles.title)}>
-          {board ? "Modifier le tableau" : "Ajouter un nouveau tableau"}
+          {boardId ? "Modifier le tableau" : "Ajouter un nouveau tableau"}
         </p>
         <Input
           label="Nom du tableau"
@@ -41,10 +40,14 @@ function FormBoard({ boardId }: FormBoardProps) {
           placeholder="ex : Web Design"
           content={board.length > 0 ? board[0].name : undefined}
         />
-        <InputList title="Colonnes" columns={columns} />
+        <InputList
+          title="Colonnes"
+          type="column"
+          columns={boardId ? columns : undefined}
+        />
 
         <Button color="purple" size="medium" width="auto">
-          {board ? "Modifier le tableau" : "Créer le tableau"}
+          {boardId ? "Modifier le tableau" : "Créer le tableau"}
         </Button>
       </form>
     </div>

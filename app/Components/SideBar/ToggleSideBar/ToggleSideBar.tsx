@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef } from "react";
+import React from "react";
 import classNames from "classnames/bind";
 import styles from "./ToggleSideBar.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";

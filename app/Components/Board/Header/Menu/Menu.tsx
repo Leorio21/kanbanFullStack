@@ -18,7 +18,7 @@ function Menu() {
       state.columns.filter((column) => column.boardId === activeBoard).length >
       0
   );
-  // const openAddBoarForm = useBoardsStore((state) => state.openBoardForm);
+  const openTaskForm = useBoardsStore((state) => state.openTaskForm);
   const deleteBoard = useBoardsStore((state) => state.deleteBoard);
 
   const openDeleteForm = (newValue: boolean) => {
@@ -26,9 +26,7 @@ function Menu() {
   };
 
   const onDeleteHandler = () => {
-    console.log("enter delete", activeBoard);
     if (activeBoard !== null) {
-      console.log("delete");
       deleteBoard();
       openDeleteForm(false);
     }
@@ -39,7 +37,12 @@ function Menu() {
       <div className={classNames(styles.container)}>
         <p className={classNames(styles.title)}>{board[0].name}</p>
         <div className={classNames(styles.buttonsContainer)}>
-          <Button color="purple" size="medium" disable={!boardHasColumns}>
+          <Button
+            color="purple"
+            size="medium"
+            disable={!boardHasColumns}
+            onClick={() => openTaskForm(true)}
+          >
             + Ajouter une tâche
           </Button>
           <ElipsisMenu position="board">

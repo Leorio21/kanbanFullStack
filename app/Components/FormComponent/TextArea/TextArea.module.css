@@ -1,0 +1,22 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 10px;
+  color: var(--secondary-font-color);
+  font-size: var(--font--small);
+  font-weight: bold;
+}
+
+.textArea {
+  display: flex;
+  flex: auto;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid rgb(var(--darkGrey--light));
+  padding-left: 20px;
+  background: none;
+}

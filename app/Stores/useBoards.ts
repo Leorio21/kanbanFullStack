@@ -17,8 +17,8 @@ interface BoardsState {
   activeTask: number | null;
 
   /*---------- A verif --------------*/
-  displayAddBoardForm: { isOpen: boolean; type: "new" | "modify" | "" };
-  // displayAddTaskForm: boolean;
+  displayBoardForm: { isOpen: boolean; type: "new" | "modify" | "" };
+  displayTaskForm: boolean;
   // addNewBoard: (newboardTitle: string) => void;
   deleteBoard: () => void;
   deleteTask: () => void;
@@ -26,7 +26,7 @@ interface BoardsState {
   changeActiveBoard: (newActiveBoard: number) => void;
   changeActiveTask: (newActiveTask: number | null) => void;
   openBoardForm: (newStatus: boolean, newType?: "new" | "modify" | "") => void;
-  // openTaskForm: (newStatus: boolean) => void;
+  openTaskForm: (newStatus: boolean) => void;
 }
 
 export const useBoardsStore = create<BoardsState>()((set) => ({
@@ -43,8 +43,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   activeBoard: boardsJson.boards.length > 0 ? 0 : null,
   activeTask: null,
 
-  displayAddBoardForm: { isOpen: false, type: "" },
-  // displayAddTaskForm: false,
+  displayBoardForm: { isOpen: false, type: "" },
+  displayTaskForm: false,
   // addNewBoard: (newboardTitle) =>
   //   set((current) => {
   //     const newBoards = [...current.boards];
@@ -80,9 +80,9 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   changeActiveTask: (newActiveTask) =>
     set(() => ({ activeTask: newActiveTask })),
   openBoardForm: (newStatus: boolean, newType = "") =>
-    set(() => ({ displayAddBoardForm: { isOpen: newStatus, type: newType } })),
-  // openTaskForm: (newStatus: boolean) =>
-  //   set(() => ({ displayAddTaskForm: newStatus })),
+    set(() => ({ displayBoardForm: { isOpen: newStatus, type: newType } })),
+  openTaskForm: (newStatus: boolean) =>
+    set(() => ({ displayTaskForm: newStatus })),
 }));
 
 export const loadData = () => {

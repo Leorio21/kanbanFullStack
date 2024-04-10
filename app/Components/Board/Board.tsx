@@ -9,13 +9,9 @@ import FormTask from "../FormTask/FormTask";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 
 function Board() {
-  // const displayAddBoardForm = useBoardsStore(
-  //   (state) => state.displayAddBoardForm
-  // );
-  // const displayAddTaskForm = useBoardsStore(
-  //   (state) => state.displayAddTaskForm
-  // );
-  // const activeBoard = useBoardsStore((state) => state.activeBoard);
+  const displayBoardForm = useBoardsStore((state) => state.displayBoardForm);
+  const displayTaskForm = useBoardsStore((state) => state.displayTaskForm);
+  const activeBoard = useBoardsStore((state) => state.activeBoard);
 
   return (
     <>
@@ -26,13 +22,13 @@ function Board() {
           <Content />
         </div>
       </div>
-      {/* {displayAddBoardForm.isOpen && displayAddBoardForm.type === "new" && (
+      {displayBoardForm.isOpen && displayBoardForm.type === "new" && (
         <FormBoard />
       )}
-      {displayAddBoardForm.isOpen &&
-        displayAddBoardForm.type === "modify" &&
-        activeBoard && <FormBoard board={activeBoard} />}
-      {displayAddTaskForm && <FormTask />} */}
+      {displayBoardForm.isOpen &&
+        displayBoardForm.type === "modify" &&
+        activeBoard && <FormBoard boardId={activeBoard} />}
+      {displayTaskForm && <FormTask />}
     </>
   );
 }

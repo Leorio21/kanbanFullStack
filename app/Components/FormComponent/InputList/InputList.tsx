@@ -7,11 +7,23 @@ import { Column, SubTask } from "@/app/Types/Types";
 
 type InputListProps = {
   title: string;
+  type: "column" | "subtask";
   columns?: Column[];
   subtasks?: SubTask[];
+  placeHolder?: string[];
 };
 
-function InputList({ title, columns, subtasks }: InputListProps) {
+function InputList({
+  title,
+  type,
+  columns,
+  subtasks,
+  placeHolder,
+}: InputListProps) {
+  const buttonText = {
+    column: "+ Ajouter une colonne",
+    subtask: "+ Ajouter une sous-tâche",
+  };
   const loadInputValue = () => {
     if (columns) {
       return columns.map((column, index) => {
@@ -27,8 +39,18 @@ function InputList({ title, columns, subtasks }: InputListProps) {
       });
     }
     return [
-      { id: 0, jsx: <Input type="text" /> },
-      { id: 1, jsx: <Input type="text" /> },
+      {
+        id: 0,
+        jsx: (
+          <Input type="text" placeholder={placeHolder ? placeHolder[0] : ""} />
+        ),
+      },
+      {
+        id: 1,
+        jsx: (
+          <Input type="text" placeholder={placeHolder ? placeHolder[1] : ""} />
+        ),
+      },
     ];
   };
 
@@ -74,7 +96,7 @@ function InputList({ title, columns, subtasks }: InputListProps) {
         ))}
       </div>
       <Button color="white" size="medium" width="auto" onClick={addColumnInput}>
-        + Ajouter une colonne
+        {buttonText[type]}
       </Button>
     </>
   );
