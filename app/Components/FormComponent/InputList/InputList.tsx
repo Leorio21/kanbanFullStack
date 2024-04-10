@@ -7,8 +7,8 @@ import { Column, SubTask } from "@/app/Types/Types";
 
 type InputListProps = {
   title: string;
-  columns?: Column[] | undefined;
-  subtasks?: SubTask[] | undefined;
+  columns?: Column[];
+  subtasks?: SubTask[];
 };
 
 function InputList({ title, columns, subtasks }: InputListProps) {

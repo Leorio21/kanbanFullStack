@@ -8,11 +8,17 @@ import InputList from "../FormComponent/InputList/InputList";
 import type { Board } from "@/app/Types/Types";
 
 type FormBoardProps = {
-  board?: Board;
+  boardId?: number;
 };
 
-function FormBoard({ board }: FormBoardProps) {
+function FormBoard({ boardId }: FormBoardProps) {
   const formRef = useRef<HTMLFormElement>(null);
+  const board = useBoardsStore((state) =>
+    state.boards.filter((board) => board.id === boardId)
+  );
+  const columns = useBoardsStore((state) =>
+    state.columns.filter((column) => column.boardId === state.activeBoard)
+  );
   const openBoardForm = useBoardsStore((state) => state.openBoardForm);
 
   const closeForm = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -33,9 +39,9 @@ function FormBoard({ board }: FormBoardProps) {
           type="text"
           name="boardName"
           placeholder="ex : Web Design"
-          content={board && board.name}
+          content={board.length > 0 ? board[0].name : undefined}
         />
-        <InputList title="Colonnes" columns={board?.columns} />
+        <InputList title="Colonnes" columns={columns} />
 
         <Button color="purple" size="medium" width="auto">
           {board ? "Modifier le tableau" : "Créer le tableau"}
