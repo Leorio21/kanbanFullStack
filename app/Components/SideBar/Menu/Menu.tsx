@@ -9,20 +9,18 @@ import ThemeSelector from "../ThemeSelector/ThemeSelector";
 const cx = classNames.bind(styles);
 
 function Menu() {
-  const boards = useBoardsStore((state) => state.boards);
-  const sideBardIsClose = useBoardsStore((state) => state.sideBarIsCLosed)
+  const nbBoards = useBoardsStore((state) => state.boards.length);
+  const sideBardIsClose = useBoardsStore((state) => state.sideBarIsCLosed);
 
   return (
     <div className={cx({ container: true, close: sideBardIsClose })}>
-        <div className={cx("boardListContainer")}>
-          <p className={cx("boardListTitle")}>
-            Tous les tableaux ({boards.length})
-          </p>
-          <BoardList />
-        </div>
-        <ThemeSelector />
+      <div className={cx("boardListContainer")}>
+        <p className={cx("boardListTitle")}>Tous les tableaux ({nbBoards})</p>
+        <BoardList />
       </div>
-  )
+      <ThemeSelector />
+    </div>
+  );
 }
 
-export default Menu
+export default Menu;

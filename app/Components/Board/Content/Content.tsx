@@ -9,37 +9,39 @@ import Title from "./Title/Title";
 
 function Content() {
   const columnColor = ["blue", "purple", "green", "red", "yellow"];
-  const activeColumns = useBoardsStore((state) => state.activeColumns);
-  const activeColumnsName = useBoardsStore((state) => state.activeColumnsName);
   const activeBoard = useBoardsStore((state) => state.activeBoard);
+  const activeTask = useBoardsStore((state) => state.activeTask);
+  const columns = useBoardsStore((state) =>
+    state.columns.filter((column) => column.boardId === state.activeBoard)
+  );
 
-  if (!activeBoard) {
+  if (activeBoard === null) {
     return;
   }
 
-  if (activeColumns.length === 0) {
+  if (columns.length === 0) {
     return <Empty />;
   }
 
   return (
     <div className={classNames(styles.container)}>
       <div className={classNames(styles.titleContainer)}>
-        {activeColumnsName.map((columnName, index) => (
+        {columns.map((column, index) => (
           <Title
-            key={index}
-            columnName={columnName}
+            key={column.id}
+            columnName={column.name}
             color={columnColor[index % 5]}
-            numberOfTask={activeColumns[index].tasks.length}
+            columnId={column.id}
           />
         ))}
       </div>
       <div className={classNames(styles.columnsContainer)}>
-        {activeColumns.map((column) => (
-          <Column key={column.name} column={column} />
+        {columns.map((column) => (
+          <Column key={column.id} columnId={column.id} />
         ))}
         <Column />
       </div>
-      <ViewTask />
+      {activeTask !== null && <ViewTask />}
     </div>
   );
 }

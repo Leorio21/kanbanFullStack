@@ -1,16 +1,15 @@
-import React, { ComponentPropsWithRef } from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 import classNames from "classnames/bind";
 import styles from "./Delete.module.css";
 
 const cx = classNames.bind(styles);
 
 type DeleteProps = {
-  isOpen: boolean;
   type: "board" | "task";
   name: string;
-} & ComponentPropsWithRef<"div">;
+} & ComponentPropsWithoutRef<"div">;
 
-function Delete({ isOpen, name, type, children }: DeleteProps) {
+function Delete({ name, type, children }: DeleteProps) {
   const title = { board: "ce tableau", task: "cette tâche" };
   const message = {
     board: `le tableau '${name}'. Cette action supprimera toutes les colonnes, tâches et sous-tâches`,
@@ -20,7 +19,6 @@ function Delete({ isOpen, name, type, children }: DeleteProps) {
     <div
       className={cx("container", {
         backdrop: type === "board",
-        // hidden: !isOpen,
       })}
     >
       <div className={cx("messageContainer")}>

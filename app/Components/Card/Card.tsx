@@ -8,22 +8,24 @@ const cx = classNames.bind(styles);
 type CardProps = {
   addNewBoard?: boolean;
   boardName?: string;
+  boardId?: number;
 } & ComponentPropsWithoutRef<"div">;
 
 function Card({
   addNewBoard = false,
   boardName = "",
+  boardId,
   children,
   ...props
 }: CardProps) {
-  const activeBoardName = useBoardsStore((state) => state.activeBoardName);
+  const activeBoard = useBoardsStore((state) => state.activeBoard);
 
   return (
     <div
       className={cx({
         container: true,
         new: addNewBoard,
-        active: boardName === activeBoardName,
+        active: boardId === activeBoard,
       })}
       {...props}
     >

@@ -12,12 +12,24 @@ type TaskProps = {
 
 function Task({ task }: TaskProps) {
   const changeActiveTask = useBoardsStore((state) => state.changeActiveTask);
+  const numberOfSubtasks = useBoardsStore(
+    (state) =>
+      state.subTasks.filter((subtask) => subtask.taskId === task.id).length
+  );
+  const numberOfSubtasksCompleted = useBoardsStore(
+    (state) =>
+      state.subTasks.filter(
+        (subtask) => subtask.taskId === task.id && subtask.isCompleted
+      ).length
+  );
   return (
-    <article className={cx("container")} onClick={() => changeActiveTask(task)}>
+    <article
+      className={cx("container")}
+      onClick={() => changeActiveTask(task.id)}
+    >
       <p className={cx("title")}>{task.title}</p>
       <p className={cx("subtask")}>
-        {task.subtasks.filter((task) => task.isCompleted == true).length} /{" "}
-        {task.subtasks.length} sous-tâches
+        {numberOfSubtasksCompleted} / {numberOfSubtasks} sous-tâches
       </p>
     </article>
   );

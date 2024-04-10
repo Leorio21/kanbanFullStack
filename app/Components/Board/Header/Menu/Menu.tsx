@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import classNames from "classnames";
@@ -9,7 +10,15 @@ import Delete from "@/app/Components/Delete/Delete";
 function Menu() {
   const [isOpenDeleteForm, setIsOpenDeleteForm] = useState(false);
   const activeBoard = useBoardsStore((state) => state.activeBoard);
-  const openAddBoarForm = useBoardsStore((state) => state.openBoardForm);
+  const board = useBoardsStore((state) =>
+    state.boards.filter((board) => board.id === activeBoard)
+  );
+  const boardHasColumns = useBoardsStore(
+    (state) =>
+      state.columns.filter((column) => column.boardId === activeBoard).length >
+      0
+  );
+  // const openAddBoarForm = useBoardsStore((state) => state.openBoardForm);
   const deleteBoard = useBoardsStore((state) => state.deleteBoard);
 
   const openDeleteForm = (newValue: boolean) => {
@@ -17,44 +26,36 @@ function Menu() {
   };
 
   const onDeleteHandler = () => {
-    if (activeBoard) {
-      deleteBoard(activeBoard.name);
+    console.log("enter delete", activeBoard);
+    if (activeBoard !== null) {
+      console.log("delete");
+      deleteBoard();
       openDeleteForm(false);
     }
   };
 
-  if (activeBoard) {
+  if (activeBoard !== null) {
     return (
       <div className={classNames(styles.container)}>
-        <p className={classNames(styles.title)}>{activeBoard.name}</p>
+        <p className={classNames(styles.title)}>{board[0].name}</p>
         <div className={classNames(styles.buttonsContainer)}>
-          <Button
-            color="purple"
-            size="medium"
-            disable={activeBoard?.columns.length === 0}
-          >
+          <Button color="purple" size="medium" disable={!boardHasColumns}>
             + Ajouter une tâche
           </Button>
           <ElipsisMenu position="board">
-            <Item onClick={() => openAddBoarForm(true, "modify")}>
-              Modifer tableau
-            </Item>
+            <Item>Modifer tableau</Item>
             <Item type="delete" onClick={() => openDeleteForm(true)}>
               Supprimer tableau
             </Item>
           </ElipsisMenu>
         </div>
         {isOpenDeleteForm && (
-          <Delete
-            isOpen={isOpenDeleteForm}
-            type="board"
-            name={activeBoard.name}
-          >
+          <Delete type="board" name={board[0].name}>
             <Button
-              onClick={onDeleteHandler}
               color="red"
               size="medium"
               width="max"
+              onClick={onDeleteHandler}
             >
               Supprimer
             </Button>

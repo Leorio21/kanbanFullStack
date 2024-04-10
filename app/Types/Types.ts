@@ -1,43 +1,25 @@
 export type Board = {
+  id: number;
   name: string;
-  columns: {
-    name: string;
-    tasks: {
-      title: string;
-      description: string;
-      status: string;
-      subtasks: {
-        title: string;
-        isCompleted: boolean;
-      }[];
-    }[];
-  }[];
 };
 
 export type Column = {
+  id: number;
+  boardId: number;
   name: string;
-  tasks: {
-    title: string;
-    description: string;
-    status: string;
-    subtasks: {
-      title: string;
-      isCompleted: boolean;
-    }[];
-  }[];
 };
 
 export type Task = {
+  id: number;
+  columnId: number;
   title: string;
   description: string;
   status: string;
-  subtasks: {
-    title: string;
-    isCompleted: boolean;
-  }[];
 };
 
 export type SubTask = {
+  id: number;
+  taskId: number;
   title: string;
   isCompleted: boolean;
 };

@@ -3,17 +3,21 @@ import classNames from "classnames";
 import styles from "./Column.module.css";
 import type { Column } from "@/app/Types/Types";
 import Task from "./Task/Task";
+import { useBoardsStore } from "@/app/Stores/useBoards";
 
 type ColumnProps = {
-  column?: Column;
+  columnId?: number;
 };
 
-function Column({ column }: ColumnProps) {
-  if (column) {
+function Column({ columnId }: ColumnProps) {
+  const tasks = useBoardsStore((state) =>
+    state.tasks.filter((task) => task.columnId === columnId)
+  );
+  if (columnId !== undefined) {
     return (
       <div className={classNames(`${styles.container} ${styles.column}`)}>
-        {column.tasks.map((task) => (
-          <Task key={task.title} task={task} />
+        {tasks.map((task) => (
+          <Task key={task.id} task={task} />
         ))}
       </div>
     );
