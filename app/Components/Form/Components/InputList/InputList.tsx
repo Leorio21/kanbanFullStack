@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./InputList.module.css";
 import Input from "../Input/Input";
-import Button from "../../Button/Button";
+import Button from "../Button/Button";
 import { Column, SubTask } from "@/app/Types/Types";
 
 type InputListProps = {

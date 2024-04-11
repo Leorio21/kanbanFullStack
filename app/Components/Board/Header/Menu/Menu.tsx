@@ -4,7 +4,7 @@ import { useBoardsStore } from "@/app/Stores/useBoards";
 import classNames from "classnames";
 import styles from "./Menu.module.css";
 import { ElipsisMenu, Item } from "@/app/Components/ElipsisMenu/ElipsisMenu";
-import Button from "@/app/Components/Button/Button";
+import Button from "@/app/Components/Form/Components/Button/Button";
 import Delete from "@/app/Components/Delete/Delete";
 
 function Menu() {

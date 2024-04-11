@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 import classNames from "classnames";
 import styles from "./FormTask.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";
-import Button from "../Button/Button";
-import Input from "../FormComponent/Input/Input";
-import InputList from "../FormComponent/InputList/InputList";
-import TextArea from "../FormComponent/TextArea/TextArea";
+import Button from "../Components/Button/Button";
+import StatusList from "../../StatusList/StatusList";
+import Input from "../Components/Input/Input";
+import TextArea from "../Components/TextArea/TextArea";
+import InputList from "../Components/InputList/InputList";
 
 type FormTaskProps = {
   boardId?: number;
@@ -45,7 +46,7 @@ function FormTask({ boardId }: FormTaskProps) {
           label="Description"
           name="boardName"
           rows={5}
-          placeholder="ex : C'est toujours bon de faire un break. Une pause pour recharger les batteries."
+          placeholder="ex : C'est toujours bon de faire un break. Une pause de 15min pour recharger les batteries."
           // content={board.length > 0 ? board[0].name : undefined}
         />
         <InputList
@@ -53,7 +54,7 @@ function FormTask({ boardId }: FormTaskProps) {
           type="subtask"
           placeHolder={["ex: Faire le café", "ex: Boire un café et sourire"]}
         />
-
+        <StatusList />
         <Button color="purple" size="medium" width="auto">
           {boardId ? "Modifier la tâche" : "Créer la tâche"}
         </Button>

@@ -4,8 +4,8 @@ import styles from "./Board.module.css";
 import Header from "./Header/Header";
 import SideBar from "../SideBar/SideBar";
 import Content from "./Content/Content";
-import FormBoard from "../FormBoard/FormBoard";
-import FormTask from "../FormTask/FormTask";
+import FormBoard from "../Form/FormBoard/FormBoard";
+import FormTask from "../Form/FormTask/FormTask";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 
 function Board() {

@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import classNames from "classnames";
 import styles from "./FormBoard.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";
-import Button from "../Button/Button";
-import Input from "../FormComponent/Input/Input";
-import InputList from "../FormComponent/InputList/InputList";
+import Button from "../Components/Button/Button";
+import Input from "../Components/Input/Input";
+import InputList from "../Components/InputList/InputList";
 
 type FormBoardProps = {
   boardId?: number;

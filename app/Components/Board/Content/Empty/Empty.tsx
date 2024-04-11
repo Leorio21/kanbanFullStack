@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./Empty.module.css";
-import Button from "@/app/Components/Button/Button";
+import Button from "@/app/Components/Form/Components/Button/Button";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 
 function Empty() {
