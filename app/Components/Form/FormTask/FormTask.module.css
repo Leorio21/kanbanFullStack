@@ -17,8 +17,8 @@
   width: 480px;
   border-radius: 6px;
   padding: 30px 40px;
-  background: var(--secondary-background);
-  color: var(--primary-text-color);
+  background: var(--secondary-background-color);
+  color: var(--primary-font-color);
   font-size: var(--font--small);
 }
 

@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  color: var(--secondary-font-color);
+  color: var(--tertiary-font-color);
   font-weight: bold;
 }
 

@@ -62,12 +62,24 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
       return {
         boards: newBoards,
         activeBoard: newBoards.length > 0 ? newBoards[0].id : null,
+        columns: current.columns.filter(
+          (column) => column.boardId !== current.activeBoard
+        ),
+        tasks: current.tasks.filter(
+          (task) => task.boardId !== current.activeBoard
+        ),
+        subTasks: current.subTasks.filter(
+          (subtask) => subtask.boardId !== current.activeBoard
+        ),
       };
     }),
   deleteTask: () =>
     set((current) => ({
       activeTask: null,
       tasks: current.tasks.filter((task) => task.id !== current.activeTask),
+      subTasks: current.subTasks.filter(
+        (subtask) => subtask.taskId !== current.activeTask
+      ),
     })),
   openCloseSideBar: () =>
     set((current) => ({
@@ -107,6 +119,7 @@ export const loadData = () => {
       column.tasks.map((task) => {
         tasks.push({
           id: nextTaskIndex,
+          boardId: nextBoardIndex,
           columnId: nextColumnIndex,
           title: task.title,
           description: task.description,
@@ -115,6 +128,8 @@ export const loadData = () => {
         task.subtasks.map((subtask) => {
           subtasks.push({
             id: nextSubTaskIndex++,
+            boardId: nextBoardIndex,
+            columnId: nextColumnIndex,
             taskId: nextTaskIndex,
             title: subtask.title,
             isCompleted: subtask.isCompleted,

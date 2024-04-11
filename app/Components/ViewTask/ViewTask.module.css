@@ -14,8 +14,8 @@
   width: 480px;
   padding: 40px 30px;
   border-radius: 6px;
-  background: var(--secondary-background);
-  color: var(--primary-text-color);
+  background: var(--secondary-background-color);
+  color: var(--primary-font-color);
 }
 
 .button {
@@ -43,14 +43,14 @@
 .title {
   flex: auto;
   padding-right: 10px;
-  color: var(--primary-text-color);
+  color: var(--primary-font-color);
   font-size: var(--font--large);
   font-weight: bold;
 }
 
 .subTitle {
   padding: 10px 0;
-  color: var(--primary-text-color);
+  color: var(--primary-font-color);
   font-size: var(--font--small);
   font-weight: bold;
 }

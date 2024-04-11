@@ -24,7 +24,7 @@
   width: 480px;
   border-radius: 6px;
   padding: 40px 30px;
-  background: var(--secondary-background);
+  background: var(--secondary-background-color);
 }
 
 .title {

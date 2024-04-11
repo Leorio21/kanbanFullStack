@@ -26,14 +26,17 @@ function InputList({
   };
   const loadInputValue = () => {
     if (columns) {
-      return columns.map((column, index) => {
-        return { id: index, jsx: <Input type="text" content={column.name} /> };
+      return columns.map((column) => {
+        return {
+          id: column.id,
+          jsx: <Input type="text" content={column.name} />,
+        };
       });
     }
     if (subtasks) {
-      return subtasks.map((subtask, index) => {
+      return subtasks.map((subtask) => {
         return {
-          id: index,
+          id: subtask.id,
           jsx: <Input type="text" content={subtask.title} />,
         };
       });

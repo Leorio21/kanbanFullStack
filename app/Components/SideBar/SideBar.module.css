@@ -3,5 +3,5 @@
   flex-direction: column;
   height: 100%;
   width: fit-content;
-  background: var(--secondary-background);
+  background: var(--secondary-background-color);
 }

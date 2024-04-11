@@ -9,16 +9,16 @@ import TextArea from "../Components/TextArea/TextArea";
 import InputList from "../Components/InputList/InputList";
 
 type FormTaskProps = {
-  boardId?: number;
+  taskId?: number;
 };
 
-function FormTask({ boardId }: FormTaskProps) {
+function FormTask({ taskId }: FormTaskProps) {
   const formRef = useRef<HTMLFormElement>(null);
-  // const board = useBoardsStore((state) =>
-  //   state.boards.filter((board) => board.id === boardId)
-  // );
+  const task = useBoardsStore((state) =>
+    state.tasks.filter((task) => task.id === taskId)
+  );
   // const columns = useBoardsStore((state) =>
-  //   state.columns.filter((column) => column.boardId === state.activeBoard)
+  //   state.columns.filter((column) => column.taskId === state.activeBoard)
   // );
   const openTaskForm = useBoardsStore((state) => state.openTaskForm);
 
@@ -33,21 +33,21 @@ function FormTask({ boardId }: FormTaskProps) {
     <div className={classNames(styles.container)} onClick={closeForm}>
       <form ref={formRef} className={classNames(styles.formContainer)}>
         <p className={classNames(styles.title)}>
-          {boardId ? "Modifier la tâche" : "Ajouter une nouvelle tâche"}
+          {taskId ? "Modifier la tâche" : "Ajouter une nouvelle tâche"}
         </p>
         <Input
           label="Nom de la tâche"
           type="text"
           name="boardName"
           placeholder="ex : Faire une pause café"
-          // content={board.length > 0 ? board[0].name : undefined}
+          content={task.length > 0 ? task[0].title : undefined}
         />
         <TextArea
           label="Description"
           name="boardName"
           rows={5}
           placeholder="ex : C'est toujours bon de faire un break. Une pause de 15min pour recharger les batteries."
-          // content={board.length > 0 ? board[0].name : undefined}
+          content={task.length > 0 ? task[0].description : undefined}
         />
         <InputList
           title="Sous-tâches"
@@ -56,7 +56,7 @@ function FormTask({ boardId }: FormTaskProps) {
         />
         <StatusList />
         <Button color="purple" size="medium" width="auto">
-          {boardId ? "Modifier la tâche" : "Créer la tâche"}
+          {taskId ? "Sauvegarder" : "Créer"}
         </Button>
       </form>
     </div>

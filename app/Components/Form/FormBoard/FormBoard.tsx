@@ -47,7 +47,7 @@ function FormBoard({ boardId }: FormBoardProps) {
         />
 
         <Button color="purple" size="medium" width="auto">
-          {boardId ? "Modifier le tableau" : "Créer le tableau"}
+          {boardId ? "Sauvegarder" : "Créer"}
         </Button>
       </form>
     </div>

@@ -15,11 +15,12 @@
 
   --column-width: 280px;
 
-  --primary-background: rgb(var(--white));
-  --secondary-background: rgb(var(--white--light));
+  --primary-background-color: rgb(var(--white));
+  --secondary-background-color: rgb(var(--white--light));
 
-  --primary-text-color: rgb(var(--black));
+  --primary-font-color: rgb(var(--black));
   --secondary-font-color: rgb(var(--grey));
+  --tertiary-font-color: rgb(var(--grey));
 
   --board-toggle--hover: rgba(var(--purple), 0.25);
   --board-content--border: rgb(var(--grey--light));
@@ -40,11 +41,12 @@
 }
 
 .theme-dark {
-  --primary-background: rgb(var(--black--light));
-  --secondary-background: rgb(var(--darkGrey));
+  --primary-background-color: rgb(var(--black--light));
+  --secondary-background-color: rgb(var(--darkGrey));
 
-  --primary-text-color: rgb(var(--white));
+  --primary-font-color: rgb(var(--white));
   --secondary-font-color: rgb(var(--grey));
+  --tertiary-font-color: rgb(var(--white));
 
   --board-toggle--hover: rgb(var(--white--light));
   --board-content--border: rgb(var(--darkGrey--light));
@@ -71,8 +73,8 @@ body {
   height: 100%;
   overflow-y: hidden;
   max-width: 1900px;
-  background: var(--primary-background);
-  color: var(--primary-text-color);
+  background: var(--primary-background-color);
+  color: var(--primary-font-color);
 }
 
 a {
@@ -82,11 +84,12 @@ a {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-background: rgb(var(--black--light));
-    --secondary-background: rgb(var(--darkGrey));
+    --primary-background-color: rgb(var(--black--light));
+    --secondary-background-color: rgb(var(--darkGrey));
 
-    --primary-text-color: rgb(var(--white));
+    --primary-font-color: rgb(var(--white));
     --secondary-font-color: rgb(var(--grey));
+    --tertiary-font-color: rgb(var(--white));
 
     --board-toggle--hover: rgb(var(--purple--light));
     --board-content--border: rgb(var(--darkGrey--light));

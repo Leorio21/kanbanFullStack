@@ -3,5 +3,5 @@
   align-items: center;
   height: 80px;
   width: 100%;
-  background: var(--secondary-background);
+  background: var(--secondary-background-color);
 }
