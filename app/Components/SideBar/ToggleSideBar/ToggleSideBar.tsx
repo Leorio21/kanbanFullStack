@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 function ToggleSideBar() {
   const sideBardIsClose = useBoardsStore((state) => state.sideBarIsCLosed);
-  const openCloseSideBard = useBoardsStore((state) => state.openCloseSideBar);
+  const openSideBar = useBoardsStore((state) => state.openSideBar);
 
   return (
     <div
@@ -16,7 +16,7 @@ function ToggleSideBar() {
         open: !sideBardIsClose,
         close: sideBardIsClose,
       })}
-      onClick={openCloseSideBard}
+      onClick={openSideBar}
     >
       {sideBardIsClose ? (
         <svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">

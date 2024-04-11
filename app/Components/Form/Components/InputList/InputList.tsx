@@ -3,13 +3,13 @@ import classNames from "classnames";
 import styles from "./InputList.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { Column, SubTask } from "@/app/Types/Types";
+import { Column, subtask } from "@/app/Types/Types";
 
 type InputListProps = {
   title: string;
   type: "column" | "subtask";
   columns?: Column[];
-  subtasks?: SubTask[];
+  subtasks?: subtask[];
   placeHolder?: string[];
 };
 

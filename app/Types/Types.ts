@@ -18,7 +18,7 @@ export type Task = {
   status: string;
 };
 
-export type SubTask = {
+export type Subtask = {
   id: number;
   boardId: number;
   columnId: number;

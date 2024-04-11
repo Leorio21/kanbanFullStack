@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Board, Column, SubTask, Task } from "../Types/Types";
+import type { Board, Column, Subtask, Task } from "../Types/Types";
 import boardsJson from "@/data.json";
 
 interface BoardsState {
@@ -10,19 +10,17 @@ interface BoardsState {
   nextColIndex: number;
   tasks: Task[];
   nextTaskIndex: number;
-  subTasks: SubTask[];
-  nextSubTaskIndex: number;
+  subtasks: Subtask[];
+  nextsubtaskIndex: number;
   activeBoard: number | null;
   sideBarIsCLosed: boolean;
   activeTask: number | null;
-
-  /*---------- A verif --------------*/
   displayBoardForm: { isOpen: boolean; type: "new" | "modify" | "" };
   displayTaskForm: boolean;
-  // addNewBoard: (newboardTitle: string) => void;
   deleteBoard: () => void;
+  changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
   deleteTask: () => void;
-  openCloseSideBar: () => void;
+  openSideBar: () => void;
   changeActiveBoard: (newActiveBoard: number) => void;
   changeActiveTask: (newActiveTask: number | null) => void;
   openBoardForm: (newStatus: boolean, newType?: "new" | "modify" | "") => void;
@@ -32,28 +30,18 @@ interface BoardsState {
 export const useBoardsStore = create<BoardsState>()((set) => ({
   dataLoaded: false,
   boards: [],
-  columns: [],
-  tasks: [],
-  subTasks: [],
   nextBoardIndex: 0,
+  columns: [],
   nextColIndex: 0,
+  tasks: [],
   nextTaskIndex: 0,
-  nextSubTaskIndex: 0,
+  subtasks: [],
+  nextsubtaskIndex: 0,
   sideBarIsCLosed: false,
   activeBoard: boardsJson.boards.length > 0 ? 0 : null,
   activeTask: null,
-
   displayBoardForm: { isOpen: false, type: "" },
   displayTaskForm: false,
-  // addNewBoard: (newboardTitle) =>
-  //   set((current) => {
-  //     const newBoards = [...current.boards];
-  //     newBoards.push({
-  //       name: newboardTitle,
-  //       columns: [],
-  //     });
-  //     return { boards: newBoards };
-  //   }),
   deleteBoard: () =>
     set((current) => {
       const newBoards = current.boards.filter(
@@ -68,7 +56,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         tasks: current.tasks.filter(
           (task) => task.boardId !== current.activeBoard
         ),
-        subTasks: current.subTasks.filter(
+        subtasks: current.subtasks.filter(
           (subtask) => subtask.boardId !== current.activeBoard
         ),
       };
@@ -77,11 +65,22 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
     set((current) => ({
       activeTask: null,
       tasks: current.tasks.filter((task) => task.id !== current.activeTask),
-      subTasks: current.subTasks.filter(
+      subtasks: current.subtasks.filter(
         (subtask) => subtask.taskId !== current.activeTask
       ),
     })),
-  openCloseSideBar: () =>
+  changesubtaskStatus: (subtaskId, newStatus) =>
+    set((current) => ({
+      subtasks: [
+        ...current.subtasks.map((subtask) => {
+          if (subtask.id === subtaskId) {
+            return { ...subtask, isCompleted: newStatus };
+          }
+          return subtask;
+        }),
+      ],
+    })),
+  openSideBar: () =>
     set((current) => ({
       sideBarIsCLosed: current.sideBarIsCLosed ? false : true,
     })),
@@ -101,12 +100,12 @@ export const loadData = () => {
   let nextBoardIndex = 0;
   let nextColumnIndex = 0;
   let nextTaskIndex = 0;
-  let nextSubTaskIndex = 0;
+  let nextsubtaskIndex = 0;
 
   const boards: Board[] = [];
   const columns: Column[] = [];
   const tasks: Task[] = [];
-  const subtasks: SubTask[] = [];
+  const subtasks: Subtask[] = [];
 
   boardsJson.boards.map((board) => {
     boards.push({ id: nextBoardIndex, name: board.name });
@@ -127,7 +126,7 @@ export const loadData = () => {
         });
         task.subtasks.map((subtask) => {
           subtasks.push({
-            id: nextSubTaskIndex++,
+            id: nextsubtaskIndex++,
             boardId: nextBoardIndex,
             columnId: nextColumnIndex,
             taskId: nextTaskIndex,
@@ -147,11 +146,11 @@ export const loadData = () => {
     boards: boards,
     columns: columns,
     tasks: tasks,
-    subTasks: subtasks,
+    subtasks: subtasks,
     activeBoard: boards.length > 0 ? 0 : null,
     nextBoardIndex: nextBoardIndex,
     nextColumnIndex: nextColumnIndex,
     nextTaskIndex: nextTaskIndex,
-    nextSubTaskIndex: nextSubTaskIndex,
+    nextsubtaskIndex: nextsubtaskIndex,
   }));
 };

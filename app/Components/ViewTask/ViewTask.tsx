@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./ViewTask.module.css";
 import { ElipsisMenu, Item } from "../ElipsisMenu/ElipsisMenu";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import Delete from "../Delete/Delete";
 import Button from "../Form/Components/Button/Button";
-import SubTask from "./SubTask/SubTask";
 import StatusList from "../StatusList/StatusList";
+import Subtask from "./Subtask/Subtask";
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +18,7 @@ function ViewTask() {
     state.tasks.filter((task) => task.id === state.activeTask)
   );
   const subtasks = useBoardsStore((state) =>
-    state.subTasks.filter((subtask) => subtask.taskId === task[0].id)
+    state.subtasks.filter((subtask) => subtask.taskId === task[0].id)
   );
   const changeActiveTask = useBoardsStore((state) => state.changeActiveTask);
   const deleteTask = useBoardsStore((state) => state.deleteTask);
@@ -60,7 +60,7 @@ function ViewTask() {
               / {subtasks.length})
             </p>
             {subtasks.map((subtask, index) => (
-              <SubTask key={index} {...subtask} />
+              <Subtask key={index} subtask={subtask} />
             ))}
           </div>
           <StatusList status={task[0].status} />

@@ -12,13 +12,13 @@ type TaskProps = {
 
 function Task({ task }: TaskProps) {
   const changeActiveTask = useBoardsStore((state) => state.changeActiveTask);
-  const numberOfSubtasks = useBoardsStore(
+  const numberOfsubtasks = useBoardsStore(
     (state) =>
-      state.subTasks.filter((subtask) => subtask.taskId === task.id).length
+      state.subtasks.filter((subtask) => subtask.taskId === task.id).length
   );
-  const numberOfSubtasksCompleted = useBoardsStore(
+  const numberOfsubtasksCompleted = useBoardsStore(
     (state) =>
-      state.subTasks.filter(
+      state.subtasks.filter(
         (subtask) => subtask.taskId === task.id && subtask.isCompleted
       ).length
   );
@@ -29,7 +29,7 @@ function Task({ task }: TaskProps) {
     >
       <p className={cx("title")}>{task.title}</p>
       <p className={cx("subtask")}>
-        {numberOfSubtasksCompleted} / {numberOfSubtasks} sous-tâches
+        {numberOfsubtasksCompleted} / {numberOfsubtasks} sous-tâches
       </p>
     </article>
   );

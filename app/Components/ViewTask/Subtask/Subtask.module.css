@@ -6,6 +6,7 @@
   border-radius: 6px;
   padding: 10px;
   background: var(--primary-background-color);
+  cursor: pointer;
   font-size: var(--font--small);
   font-weight: bold;
 }
