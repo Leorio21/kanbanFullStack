@@ -7,7 +7,7 @@ interface BoardsState {
   boards: Board[];
   nextBoardIndex: number;
   columns: Column[];
-  nextColIndex: number;
+  nextColumnIndex: number;
   tasks: Task[];
   nextTaskIndex: number;
   subtasks: Subtask[];
@@ -17,7 +17,13 @@ interface BoardsState {
   activeTask: number | null;
   displayBoardForm: { isOpen: boolean; type: "new" | "modify" | "" };
   displayTaskForm: boolean;
+  addNewBoard: (newBoard: { [key: string]: string }) => void;
+  modifyBoard: (
+    boardModified: { [key: string]: string },
+    boardId: number
+  ) => void;
   deleteBoard: () => void;
+  deleteColumn: (columnIdToDelete: number) => void;
   changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
   deleteTask: () => void;
   openSideBar: () => void;
@@ -32,7 +38,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   boards: [],
   nextBoardIndex: 0,
   columns: [],
-  nextColIndex: 0,
+  nextColumnIndex: 0,
   tasks: [],
   nextTaskIndex: 0,
   subtasks: [],
@@ -42,6 +48,75 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   activeTask: null,
   displayBoardForm: { isOpen: false, type: "" },
   displayTaskForm: false,
+  addNewBoard: (newBoard) =>
+    set((current) => {
+      const newBoards = [...current.boards];
+      const newColumns = [...current.columns];
+      let boardId = current.nextBoardIndex;
+      let columnId = current.nextColumnIndex;
+      for (const field in newBoard) {
+        if (field === "boardName") {
+          newBoards.push({
+            id: boardId++,
+            name: newBoard[field],
+          });
+          continue;
+        }
+        if (newBoard[field].match(/[\w]/g)) {
+          newColumns.push({
+            id: columnId++,
+            boardId: current.nextBoardIndex,
+            name: newBoard[field],
+          });
+        }
+      }
+      return {
+        activeBoard: current.nextBoardIndex,
+        boards: newBoards,
+        nextBoardIndex: boardId,
+        columns: newColumns,
+        nextColumnIndex: columnId,
+      };
+    }),
+  modifyBoard: (boardModified, boardId) =>
+    set((current) => {
+      const newBoards = [
+        ...current.boards.map((board) => {
+          if (board.id === boardId) {
+            return { ...board, name: boardModified.boardName };
+          }
+          return board;
+        }),
+      ];
+      const columnsModified = [...current.columns];
+      let columnId = current.nextColumnIndex;
+      for (const field in boardModified) {
+        if (field === "boardName") {
+          continue;
+        }
+        if (boardModified[field].match(/[\w]/g)) {
+          const index = columnsModified.findIndex((col) => col.id === +field);
+          if (index >= 0) {
+            columnsModified[index] = {
+              ...columnsModified[index],
+              name: boardModified[field],
+            };
+          } else {
+            columnsModified.push({
+              id: columnId++,
+              boardId: boardId,
+              name: boardModified[field],
+            });
+          }
+        }
+      }
+      console.log(columnsModified);
+      return {
+        boards: newBoards,
+        columns: columnsModified,
+        nextColumnIndex: columnId,
+      };
+    }),
   deleteBoard: () =>
     set((current) => {
       const newBoards = current.boards.filter(
@@ -61,6 +136,20 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         ),
       };
     }),
+  deleteColumn: (columnIdToDelete: number) =>
+    set((current) => ({
+      columns: [
+        ...current.columns.filter((column) => column.id !== columnIdToDelete),
+      ],
+      tasks: [
+        ...current.tasks.filter((task) => task.columnId !== columnIdToDelete),
+      ],
+      subtasks: [
+        ...current.subtasks.filter(
+          (subtask) => subtask.columnId !== columnIdToDelete
+        ),
+      ],
+    })),
   deleteTask: () =>
     set((current) => ({
       activeTask: null,

@@ -3,6 +3,7 @@
   align-items: center;
   gap: 10px;
   width: var(--column-width);
+  min-width: var(--column-width);
   color: rgb(var(--grey));
   font-size: var(--font--medium);
   font-weight: bold;

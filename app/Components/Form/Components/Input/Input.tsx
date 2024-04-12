@@ -1,41 +1,57 @@
 import React, { ComponentPropsWithoutRef, useId, useState } from "react";
-import classNames from "classnames";
+import classNames from "classnames/bind";
 import styles from "./Input.module.css";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import type { FormInputs } from "@/app/Types/Types";
+
+const cx = classNames.bind(styles);
 
 type InputProps = {
+  register: UseFormRegister<FormInputs>;
+  errors: FieldErrors<FormInputs>;
   label?: string;
+  notNull?: boolean;
   content?: string;
+  fieldName: string;
 } & ComponentPropsWithoutRef<"input">;
 
-function Input({ label, content = "", ...props }: InputProps) {
+function Input({
+  label,
+  fieldName,
+  register,
+  errors,
+  notNull = false,
+  content = "",
+  ...props
+}: InputProps) {
   const id = useId();
-  const [inputValue, setInputValue] = useState(content);
-
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(() => event.target.value);
-  };
 
   if (label) {
     return (
-      <label className={classNames(styles.label)} htmlFor={id}>
-        <span className={classNames(styles.title)}>{label}</span>
-        <input
-          className={classNames(styles.input)}
-          id={id}
-          value={inputValue}
-          {...props}
-          onChange={onChangeHandler}
-        />
+      <label className={cx("label")} htmlFor={id}>
+        <span className={cx("title")}>{label}</span>
+        <p className={cx("inputContainer")}>
+          <input
+            className={cx("input", { error: errors[fieldName] })}
+            id={id}
+            defaultValue={content}
+            {...props}
+            {...register(fieldName, { required: notNull })}
+          />
+          {errors[fieldName] && (
+            <span className={cx("errorText")}>Ne peut être vide</span>
+          )}
+        </p>
       </label>
     );
   }
   return (
     <input
-      className={classNames(styles.input)}
+      className={cx("input")}
       id={id}
-      value={inputValue}
+      defaultValue={content}
       {...props}
-      onChange={onChangeHandler}
+      {...register(fieldName, { required: notNull })}
     />
   );
 }

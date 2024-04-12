@@ -27,7 +27,7 @@ function Board() {
       )}
       {displayBoardForm.isOpen &&
         displayBoardForm.type === "modify" &&
-        activeBoard && <FormBoard boardId={activeBoard} />}
+        activeBoard !== null && <FormBoard boardId={activeBoard} />}
       {displayTaskForm && <FormTask />}
     </>
   );

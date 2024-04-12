@@ -11,13 +11,45 @@
   font-weight: bold;
 }
 
-.input {
+.inputContainer {
+  position: relative;
   display: flex;
   flex: auto;
   align-items: center;
   height: 40px;
+  width: 100%;
+}
+
+.input {
+  height: 40px;
+  width: 100%;
   border-radius: 6px;
   border: 1px solid rgb(var(--darkGrey--light));
   padding-left: 20px;
   background: none;
+}
+
+.input:focus.error {
+  outline: 1px solid rgb(var(--red));
+}
+
+.error {
+  border: 1px solid rgb(var(--red));
+}
+
+.errorText {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 15px;
+  color: rgb(var(--red));
+}
+
+.hidden {
+  display: none;
 }

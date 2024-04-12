@@ -10,6 +10,7 @@ type ColumnProps = {
 };
 
 function Column({ columnId }: ColumnProps) {
+  const openBoardForm = useBoardsStore((state) => state.openBoardForm);
   const tasks = useBoardsStore((state) =>
     state.tasks.filter((task) => task.columnId === columnId)
   );
@@ -24,7 +25,10 @@ function Column({ columnId }: ColumnProps) {
   }
 
   return (
-    <div className={classNames(`${styles.container} ${styles.newColumn}`)}>
+    <div
+      className={classNames(`${styles.container} ${styles.newColumn}`)}
+      onClick={() => openBoardForm(true, "modify")}
+    >
       + Nouvelle colonne
     </div>
   );

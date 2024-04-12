@@ -26,3 +26,8 @@ export type Subtask = {
   title: string;
   isCompleted: boolean;
 };
+
+export type FormInputs = {
+  name: string;
+  [key: string]: string;
+};

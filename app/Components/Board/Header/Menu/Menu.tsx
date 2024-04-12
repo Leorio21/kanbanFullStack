@@ -19,6 +19,7 @@ function Menu() {
       0
   );
   const openTaskForm = useBoardsStore((state) => state.openTaskForm);
+  const openBoardForm = useBoardsStore((state) => state.openBoardForm);
   const deleteBoard = useBoardsStore((state) => state.deleteBoard);
 
   const openDeleteForm = (newValue: boolean) => {
@@ -46,7 +47,9 @@ function Menu() {
             + Ajouter une tâche
           </Button>
           <ElipsisMenu position="board">
-            <Item>Modifer tableau</Item>
+            <Item onClick={() => openBoardForm(true, "modify")}>
+              Modifer tableau
+            </Item>
             <Item type="delete" onClick={() => openDeleteForm(true)}>
               Supprimer tableau
             </Item>

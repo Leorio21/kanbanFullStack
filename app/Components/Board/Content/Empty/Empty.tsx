@@ -5,12 +5,12 @@ import Button from "@/app/Components/Form/Components/Button/Button";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 
 function Empty() {
-  const openAddBoarForm = useBoardsStore((state) => state.openBoardForm);
+  const openBoardForm = useBoardsStore((state) => state.openBoardForm);
   return (
     <div className={classNames(styles.container)}>
       <p>Ce tableau est vide. Créer une colonne pour commencer.</p>
       <Button
-        onClick={() => openAddBoarForm(true, "modify")}
+        onClick={() => openBoardForm(true, "modify")}
         color="purple"
         size="large"
       >
