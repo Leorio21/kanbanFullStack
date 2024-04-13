@@ -57,7 +57,7 @@ export const useBoardsStore = create<BoardsState>()(
       subtasks: [],
       nextsubtaskIndex: 0,
       sideBarIsCLosed: false,
-      activeBoard: boardsJson.boards.length > 0 ? 0 : null,
+      activeBoard: null,
       activeTask: null,
       displayBoardForm: { isOpen: false, method: "" },
       displayTaskForm: { isOpen: false, method: "" },

@@ -3,12 +3,14 @@ import classNames from "classnames";
 import styles from "./Header.module.css";
 import Logo from "./Logo/Logo";
 import Menu from "./Menu/Menu";
+import { useBoardsStore } from "@/app/Stores/useBoards";
 
 function Header() {
+  const activeBoard = useBoardsStore((state) => state.activeBoard);
   return (
     <div className={classNames(styles.container)}>
       <Logo />
-      <Menu />
+      {activeBoard !== null && <Menu />}
     </div>
   );
 }

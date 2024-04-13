@@ -4,17 +4,23 @@ import Board from "./Components/Board/Board";
 import { loadData, useBoardsStore } from "./Stores/useBoards";
 
 export default function Home() {
-  const [data, setData] = useState(false);
   const dataLoaded = useBoardsStore((state) => state.dataLoaded);
 
   useEffect(() => {
-    if (!dataLoaded && !localStorage.getItem("boards")) {
+    const getLocalStorage = localStorage.getItem("boards");
+    const localSto = getLocalStorage
+      ? JSON.parse(getLocalStorage)
+      : { state: { dataLoaded: false } };
+    console.log(localSto);
+    if (
+      (!dataLoaded && !localStorage.getItem("boards")) ||
+      !localSto.state.dataLoaded
+    ) {
       loadData();
     }
-    setData(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  if (data) {
+  if (dataLoaded) {
     return (
       <>
         <Board />
