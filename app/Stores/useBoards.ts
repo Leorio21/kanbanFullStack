@@ -55,8 +55,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   displayTaskForm: false,
   addNewBoard: (newBoard) =>
     set((current) => {
-      const newBoards = [...current.boards];
-      const newColumns = [...current.columns];
+      const newBoards = current.boards;
+      const newColumns = current.columns;
       let boardId = current.nextBoardIndex;
       let columnId = current.nextColumnIndex;
       for (const field in newBoard) {
@@ -93,7 +93,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
           return board;
         }),
       ];
-      const columnsModified = [...current.columns];
+      const columnsModified = current.columns;
+      let tasks = [...current.tasks];
       let columnId = current.nextColumnIndex;
       for (const field in boardModified) {
         if (field === "boardName") {
@@ -106,6 +107,14 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
               ...columnsModified[index],
               name: boardModified[field],
             };
+            tasks = [
+              ...tasks.map((task) => {
+                if (task.columnId === index) {
+                  return { ...task, status: boardModified[field] };
+                }
+                return task;
+              }),
+            ];
           } else {
             columnsModified.push({
               id: columnId++,
@@ -119,6 +128,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
       return {
         boards: newBoards,
         columns: columnsModified,
+        tasks: tasks,
         nextColumnIndex: columnId,
       };
     }),
@@ -167,7 +177,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         description: newTask["description"],
         status: newTask["status"],
       };
-      const newSubtasks = [...current.subtasks];
+      const newSubtasks = current.subtasks;
       for (const field in newTask) {
         if (
           field === "taskName" ||
