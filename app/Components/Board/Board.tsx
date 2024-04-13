@@ -22,11 +22,11 @@ function Board() {
           <Content />
         </div>
       </div>
-      {displayBoardForm.isOpen && displayBoardForm.type === "new" && (
+      {displayBoardForm.isOpen && displayBoardForm.method === "new" && (
         <FormBoard />
       )}
       {displayBoardForm.isOpen &&
-        displayBoardForm.type === "modify" &&
+        displayBoardForm.method === "modify" &&
         activeBoard !== null && <FormBoard boardId={activeBoard} />}
       {displayTaskForm && <FormTask />}
     </>
