@@ -15,7 +15,7 @@ interface BoardsState {
   activeBoard: number | null;
   sideBarIsCLosed: boolean;
   activeTask: number | null;
-  displayBoardForm: { isOpen: boolean; type: "new" | "modify" | "" };
+  displayBoardForm: { isOpen: boolean; method: "new" | "modify" | "" };
   displayTaskForm: boolean;
   addNewBoard: (newBoard: { [key: string]: string }) => void;
   modifyBoard: (
@@ -24,12 +24,16 @@ interface BoardsState {
   ) => void;
   deleteBoard: () => void;
   deleteColumn: (columnIdToDelete: number) => void;
-  changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
+  addTask: (newTask: { [key: string]: string }) => void;
   deleteTask: () => void;
+  changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
   openSideBar: () => void;
   changeActiveBoard: (newActiveBoard: number) => void;
   changeActiveTask: (newActiveTask: number | null) => void;
-  openBoardForm: (newStatus: boolean, newType?: "new" | "modify" | "") => void;
+  openBoardForm: (
+    newStatus: boolean,
+    newMethod?: "new" | "modify" | ""
+  ) => void;
   openTaskForm: (newStatus: boolean) => void;
 }
 
@@ -46,7 +50,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   sideBarIsCLosed: false,
   activeBoard: boardsJson.boards.length > 0 ? 0 : null,
   activeTask: null,
-  displayBoardForm: { isOpen: false, type: "" },
+  displayBoardForm: { isOpen: false, method: "" },
   displayTaskForm: false,
   addNewBoard: (newBoard) =>
     set((current) => {
@@ -150,6 +154,47 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         ),
       ],
     })),
+  addTask: (newTask) =>
+    set((current) => {
+      let taskId = current.nextTaskIndex;
+      let subtaskId = current.nextsubtaskIndex;
+      const taskToAdd: Task = {
+        id: taskId,
+        boardId: current.activeBoard !== null ? current.activeBoard : 0,
+        columnId: Number(newTask["colId"]),
+        title: newTask["taskName"],
+        description: newTask["description"],
+        status: newTask["status"],
+      };
+      const newSubtasks = [...current.subtasks];
+      for (const field in newTask) {
+        if (
+          field === "taskName" ||
+          field === "description" ||
+          field === "status" ||
+          field === "colId"
+        ) {
+          continue;
+        }
+        if (newTask[field].match(/[\w]/g)) {
+          newSubtasks.push({
+            id: subtaskId++,
+            boardId: current.nextBoardIndex,
+            columnId: Number(newTask["colId"]),
+            taskId: taskId,
+            title: newTask[field],
+            isCompleted: false,
+          });
+        }
+      }
+      taskId++;
+      return {
+        tasks: [...current.tasks, taskToAdd],
+        nextTaskIndex: taskId,
+        subtasks: newSubtasks,
+        nextsubtaskIndex: subtaskId,
+      };
+    }),
   deleteTask: () =>
     set((current) => ({
       activeTask: null,
@@ -179,8 +224,8 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
     })),
   changeActiveTask: (newActiveTask) =>
     set(() => ({ activeTask: newActiveTask })),
-  openBoardForm: (newStatus: boolean, newType = "") =>
-    set(() => ({ displayBoardForm: { isOpen: newStatus, type: newType } })),
+  openBoardForm: (newStatus: boolean, newMethod = "") =>
+    set(() => ({ displayBoardForm: { isOpen: newStatus, method: newMethod } })),
   openTaskForm: (newStatus: boolean) =>
     set(() => ({ displayTaskForm: newStatus })),
 }));

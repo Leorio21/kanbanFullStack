@@ -1,13 +1,24 @@
 import React, { ComponentPropsWithoutRef, useId, useState } from "react";
 import classNames from "classnames";
 import styles from "./TextArea.module.css";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import type { FormInputs } from "@/app/Types/Types";
 
 type TextAreaProps = {
+  register: UseFormRegister<FormInputs>;
+  errors: FieldErrors<FormInputs>;
   label: string;
+  fieldName: string;
   content?: string;
 } & ComponentPropsWithoutRef<"textarea">;
 
-function TextArea({ label, content, ...props }: TextAreaProps) {
+function TextArea({
+  register,
+  fieldName,
+  label,
+  content,
+  ...props
+}: TextAreaProps) {
   const id = useId();
   const [inputValue, setInputValue] = useState(content);
 
@@ -22,6 +33,7 @@ function TextArea({ label, content, ...props }: TextAreaProps) {
         className={classNames(styles.textArea)}
         id={id}
         {...props}
+        {...register(fieldName)}
         onChange={() => onChangeHandler}
       ></textarea>
     </label>

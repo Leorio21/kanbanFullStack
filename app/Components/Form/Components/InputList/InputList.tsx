@@ -5,7 +5,6 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import type { Column, FormInputs, Subtask } from "@/app/Types/Types";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { useBoardsStore } from "@/app/Stores/useBoards";
 
 type InputListProps = {
   register: UseFormRegister<FormInputs>;

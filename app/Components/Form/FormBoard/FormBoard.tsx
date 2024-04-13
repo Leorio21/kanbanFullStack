@@ -6,7 +6,7 @@ import { useBoardsStore } from "@/app/Stores/useBoards";
 import Button from "../Components/Button/Button";
 import Input from "../Components/Input/Input";
 import InputList from "../Components/InputList/InputList";
-import { FormInputs } from "@/app/Types/Types";
+import type { FormInputs } from "@/app/Types/Types";
 
 type FormBoardProps = {
   boardId?: number;
