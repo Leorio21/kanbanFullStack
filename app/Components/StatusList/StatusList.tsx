@@ -56,7 +56,6 @@ function StatusList({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTask]);
-
   return (
     <div ref={statusRef} className={cx("statusContainer")}>
       <p className={cx("subTitle")}>Status Actuel</p>
@@ -69,13 +68,15 @@ function StatusList({
         <input
           type="text"
           style={{ display: "none" }}
-          defaultValue={status}
+          defaultValue={status !== undefined ? status : columnsBoard[0].name}
           {...register?.("status")}
         />
         <input
           type="text"
           style={{ display: "none" }}
-          defaultValue={taskColumnId}
+          defaultValue={
+            taskColumnId !== undefined ? taskColumnId : columnsBoard[0].id
+          }
           {...register?.("colId")}
         />
         <span>{statusSelected ? statusSelected : columnsBoard[0].name}</span>

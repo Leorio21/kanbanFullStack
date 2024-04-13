@@ -197,7 +197,6 @@ function InputList({
 
   const deleteColumnInput = (indexToDelete: number, id?: number) => {
     if (id !== undefined) {
-      console.log("add id");
       addIdToDelete(id);
     }
     setInputs((current) => {

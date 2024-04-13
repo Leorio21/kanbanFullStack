@@ -48,7 +48,6 @@ function FormTask({ taskId }: FormTaskProps) {
   };
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data);
     if (taskId !== undefined) {
       modifyTask(data, taskId);
       subtaskIdToDelete.forEach((id) => deleteSubtasks(id));
