@@ -12,6 +12,7 @@ function Board() {
   const displayBoardForm = useBoardsStore((state) => state.displayBoardForm);
   const displayTaskForm = useBoardsStore((state) => state.displayTaskForm);
   const activeBoard = useBoardsStore((state) => state.activeBoard);
+  const activeTask = useBoardsStore((state) => state.activeTask);
 
   return (
     <>
@@ -28,7 +29,12 @@ function Board() {
       {displayBoardForm.isOpen &&
         displayBoardForm.method === "modify" &&
         activeBoard !== null && <FormBoard boardId={activeBoard} />}
-      {displayTaskForm && <FormTask />}
+      {displayTaskForm.isOpen && displayTaskForm.method === "new" && (
+        <FormTask />
+      )}
+      {displayTaskForm.isOpen &&
+        displayTaskForm.method === "modify" &&
+        activeTask !== null && <FormTask taskId={activeTask} />}
     </>
   );
 }

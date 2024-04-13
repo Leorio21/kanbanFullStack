@@ -20,11 +20,6 @@ function TextArea({
   ...props
 }: TextAreaProps) {
   const id = useId();
-  const [inputValue, setInputValue] = useState(content);
-
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(() => event.target.value);
-  };
 
   return (
     <label className={classNames(styles.label)} htmlFor={id}>
@@ -32,9 +27,9 @@ function TextArea({
       <textarea
         className={classNames(styles.textArea)}
         id={id}
+        defaultValue={content}
         {...props}
         {...register(fieldName)}
-        onChange={() => onChangeHandler}
       ></textarea>
     </label>
   );

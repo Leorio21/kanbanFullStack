@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, useId, useState } from "react";
+import React, { ComponentPropsWithoutRef, useId } from "react";
 import classNames from "classnames/bind";
 import styles from "./Input.module.css";
 import { FieldErrors, UseFormRegister } from "react-hook-form";

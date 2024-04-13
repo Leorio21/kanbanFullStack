@@ -16,7 +16,7 @@ interface BoardsState {
   sideBarIsCLosed: boolean;
   activeTask: number | null;
   displayBoardForm: { isOpen: boolean; method: "new" | "modify" | "" };
-  displayTaskForm: boolean;
+  displayTaskForm: { isOpen: boolean; method: "new" | "modify" | "" };
   addNewBoard: (newBoard: { [key: string]: string }) => void;
   modifyBoard: (
     boardModified: { [key: string]: string },
@@ -26,16 +26,21 @@ interface BoardsState {
   deleteColumn: (columnIdToDelete: number) => void;
   addTask: (newTask: { [key: string]: string }) => void;
   changeTaskStatus: (newStatus: string, colId: number) => void;
+  modifyTask: (taskModified: { [key: string]: string }, taskId: number) => void;
   deleteTask: () => void;
   changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
+  deleteSubtasks: (subtaskId: number) => void;
   openSideBar: () => void;
   changeActiveBoard: (newActiveBoard: number) => void;
   changeActiveTask: (newActiveTask: number | null) => void;
   openBoardForm: (
-    newStatus: boolean,
+    newIsOpenStatus: boolean,
     newMethod?: "new" | "modify" | ""
   ) => void;
-  openTaskForm: (newStatus: boolean) => void;
+  openTaskForm: (
+    newIsOpenStatus: boolean,
+    newMethod?: "new" | "modify" | ""
+  ) => void;
 }
 
 export const useBoardsStore = create<BoardsState>()((set) => ({
@@ -52,7 +57,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
   activeBoard: boardsJson.boards.length > 0 ? 0 : null,
   activeTask: null,
   displayBoardForm: { isOpen: false, method: "" },
-  displayTaskForm: false,
+  displayTaskForm: { isOpen: false, method: "" },
   addNewBoard: (newBoard) =>
     set((current) => {
       const newBoards = current.boards;
@@ -94,7 +99,7 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         }),
       ];
       const columnsModified = current.columns;
-      let tasks = [...current.tasks];
+      let tasks = current.tasks;
       let columnId = current.nextColumnIndex;
       for (const field in boardModified) {
         if (field === "boardName") {
@@ -124,7 +129,6 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
           }
         }
       }
-      console.log(columnsModified);
       return {
         boards: newBoards,
         columns: columnsModified,
@@ -217,6 +221,61 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         }),
       ],
     })),
+  modifyTask: (taskModified, taskId) =>
+    set((current) => {
+      const newTasks = [
+        ...current.tasks.map((task) => {
+          if (task.id === taskId) {
+            return {
+              ...task,
+              title: taskModified.taskName,
+              description: taskModified.description,
+              status: taskModified.status,
+              columnId: Number(taskModified.colId),
+            };
+          }
+          return task;
+        }),
+      ];
+      const subtasksModified = current.subtasks;
+      let subtaskId = current.nextsubtaskIndex;
+      for (const field in taskModified) {
+        if (
+          field === "taskName" ||
+          field === "description" ||
+          field === "status" ||
+          field === "colId"
+        ) {
+          continue;
+        }
+        if (taskModified[field].match(/[\w]/g)) {
+          const index = subtasksModified.findIndex(
+            (subtask) => subtask.id === +field
+          );
+          if (index >= 0) {
+            subtasksModified[index] = {
+              ...subtasksModified[index],
+              title: taskModified[field],
+            };
+          } else {
+            subtasksModified.push({
+              id: subtaskId++,
+              boardId: current.activeBoard !== null ? current.activeBoard : 0,
+              columnId: Number(taskModified["colId"]),
+              taskId: taskId,
+              title: taskModified[field],
+              isCompleted: false,
+            });
+          }
+        }
+      }
+      return {
+        tasks: newTasks,
+        subtasks: subtasksModified,
+        nextsubtaskIndex: subtaskId,
+        activeTask: null,
+      };
+    }),
   deleteTask: () =>
     set((current) => ({
       activeTask: null,
@@ -236,6 +295,12 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         }),
       ],
     })),
+  deleteSubtasks: (subtaskId) =>
+    set((current) => ({
+      subtasks: [
+        ...current.subtasks.filter((subtask) => subtask.id !== subtaskId),
+      ],
+    })),
   openSideBar: () =>
     set((current) => ({
       sideBarIsCLosed: current.sideBarIsCLosed ? false : true,
@@ -246,10 +311,14 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
     })),
   changeActiveTask: (newActiveTask) =>
     set(() => ({ activeTask: newActiveTask })),
-  openBoardForm: (newStatus: boolean, newMethod = "") =>
-    set(() => ({ displayBoardForm: { isOpen: newStatus, method: newMethod } })),
-  openTaskForm: (newStatus: boolean) =>
-    set(() => ({ displayTaskForm: newStatus })),
+  openBoardForm: (newIsOpenStatus: boolean, newMethod = "") =>
+    set(() => ({
+      displayBoardForm: { isOpen: newIsOpenStatus, method: newMethod },
+    })),
+  openTaskForm: (newIsOpenStatus: boolean, newMethod = "") =>
+    set(() => ({
+      displayTaskForm: { isOpen: newIsOpenStatus, method: newMethod },
+    })),
 }));
 
 export const loadData = () => {

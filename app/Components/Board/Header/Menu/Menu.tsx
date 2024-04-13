@@ -42,7 +42,7 @@ function Menu() {
             color="purple"
             size="medium"
             disable={!boardHasColumns}
-            onClick={() => openTaskForm(true)}
+            onClick={() => openTaskForm(true, "new")}
           >
             + Ajouter une tâche
           </Button>

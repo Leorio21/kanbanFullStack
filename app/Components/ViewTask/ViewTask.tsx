@@ -20,6 +20,7 @@ function ViewTask() {
   const subtasks = useBoardsStore((state) =>
     state.subtasks.filter((subtask) => subtask.taskId === task[0].id)
   );
+  const openTaskForm = useBoardsStore((state) => state.openTaskForm);
   const changeActiveTask = useBoardsStore((state) => state.changeActiveTask);
   const deleteTask = useBoardsStore((state) => state.deleteTask);
 
@@ -46,7 +47,9 @@ function ViewTask() {
           <div className={cx("titleContainer")}>
             <p className={cx("title")}>{task[0].title}</p>
             <ElipsisMenu position="task">
-              <Item>Modifier la tâche</Item>
+              <Item onClick={() => openTaskForm(true, "modify")}>
+                Modifier la tâche
+              </Item>
               <Item type="delete" onClick={() => openCloseDeleteForm(true)}>
                 Supprimer la tâche
               </Item>

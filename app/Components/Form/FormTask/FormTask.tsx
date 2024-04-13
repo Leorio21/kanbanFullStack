@@ -25,9 +25,14 @@ function FormTask({ taskId }: FormTaskProps) {
   const task = useBoardsStore((state) =>
     state.tasks.filter((task) => task.id === taskId)
   );
+  const subtasks = useBoardsStore((state) =>
+    state.subtasks.filter((subtask) => subtask.taskId === taskId)
+  );
 
   const addTask = useBoardsStore((state) => state.addTask);
   const openTaskForm = useBoardsStore((state) => state.openTaskForm);
+  const modifyTask = useBoardsStore((state) => state.modifyTask);
+  const deleteSubtasks = useBoardsStore((state) => state.deleteSubtasks);
 
   const [subtaskIdToDelete, setSubtaskIdToDelete] = useState<number[]>([]);
 
@@ -45,9 +50,9 @@ function FormTask({ taskId }: FormTaskProps) {
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     console.log(data);
     if (taskId !== undefined) {
-      // modifyBoard(data, boardId);
-      // subtaskIdToDelete.forEach((id) => deleteColumn(id));
-      // openBoardForm(false);
+      modifyTask(data, taskId);
+      subtaskIdToDelete.forEach((id) => deleteSubtasks(id));
+      openTaskForm(false);
     } else {
       addTask(data);
       openTaskForm(false);
@@ -91,9 +96,15 @@ function FormTask({ taskId }: FormTaskProps) {
           register={register}
           errors={errors}
           addIdToDelete={addIdToDelete}
+          subtasks={taskId !== undefined ? subtasks : undefined}
           placeHolder={["ex: Faire le café", "ex: Boire un café et sourire"]}
         />
-        <StatusList register={register} setValue={setValue} />
+        <StatusList
+          register={register}
+          setValue={setValue}
+          status={task.length > 0 ? task[0].status : undefined}
+          taskColumnId={task.length > 0 ? task[0].columnId : undefined}
+        />
         <Button
           color="purple"
           size="medium"

@@ -11,13 +11,19 @@ type StatusListProps = {
   register?: UseFormRegister<FormInputs>;
   setValue?: UseFormSetValue<FormInputs>;
   status?: string;
+  taskColumnId?: number;
 };
 
-function StatusList({ register, setValue, status }: StatusListProps) {
+function StatusList({
+  register,
+  setValue,
+  status,
+  taskColumnId,
+}: StatusListProps) {
   const statusRef = useRef<HTMLDivElement>(null);
   const [statusSelected, setStatusSelected] = useState(status || "");
   const [isOpenStatusList, setIsOpenStatusList] = useState(false);
-  const columnsName = useBoardsStore((state) =>
+  const columnsBoard = useBoardsStore((state) =>
     state.columns.filter((column) => column.boardId === state.activeBoard)
   );
   const activeTask = useBoardsStore((state) => state.activeTask);
@@ -30,9 +36,9 @@ function StatusList({ register, setValue, status }: StatusListProps) {
   const onSelectStatus = (newStatus: string, colId: number) => {
     setStatusSelected(newStatus);
     setIsOpenStatusList(false);
-    if (status === undefined) {
-      setValue?.("status", newStatus);
-      setValue?.("colId", colId.toString());
+    if (setValue !== undefined) {
+      setValue("status", newStatus);
+      setValue("colId", colId.toString());
     } else {
       changeTaskStatus(newStatus, colId);
     }
@@ -63,14 +69,16 @@ function StatusList({ register, setValue, status }: StatusListProps) {
         <input
           type="text"
           style={{ display: "none" }}
+          defaultValue={status}
           {...register?.("status")}
         />
         <input
           type="text"
           style={{ display: "none" }}
+          defaultValue={taskColumnId}
           {...register?.("colId")}
         />
-        <span>{statusSelected ? statusSelected : columnsName[0].name}</span>
+        <span>{statusSelected ? statusSelected : columnsBoard[0].name}</span>
         <svg
           className={cx("chevron", {
             rotateChevron: isOpenStatusList,
@@ -83,7 +91,7 @@ function StatusList({ register, setValue, status }: StatusListProps) {
         </svg>
       </p>
       <div className={cx("statusList", { hidden: !isOpenStatusList })}>
-        {columnsName.map((column) => (
+        {columnsBoard.map((column) => (
           <p
             key={column.id}
             className={cx("statusListItem")}

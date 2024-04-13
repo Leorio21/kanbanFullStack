@@ -425,19 +425,6 @@
           "tasks": []
         }
       ]
-    },
-    {
-      "name": "Test",
-      "columns": []
-    },
-    {
-      "name": "Test2",
-      "columns": [
-        {
-          "name": "Next",
-          "tasks": []
-        }
-      ]
     }
   ]
 }
