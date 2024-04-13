@@ -18,6 +18,10 @@
   color: var(--primary-font-color);
 }
 
+.hidden {
+  display: none;
+}
+
 .button {
   cursor: pointer;
 }
