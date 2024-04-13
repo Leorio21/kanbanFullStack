@@ -25,6 +25,7 @@ interface BoardsState {
   deleteBoard: () => void;
   deleteColumn: (columnIdToDelete: number) => void;
   addTask: (newTask: { [key: string]: string }) => void;
+  changeTaskStatus: (newStatus: string, colId: number) => void;
   deleteTask: () => void;
   changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
   openSideBar: () => void;
@@ -195,6 +196,17 @@ export const useBoardsStore = create<BoardsState>()((set) => ({
         nextsubtaskIndex: subtaskId,
       };
     }),
+  changeTaskStatus: (newStatus, colId) =>
+    set((current) => ({
+      tasks: [
+        ...current.tasks.map((task) => {
+          if (task.id === current.activeTask) {
+            return { ...task, columnId: colId, status: newStatus };
+          }
+          return task;
+        }),
+      ],
+    })),
   deleteTask: () =>
     set((current) => ({
       activeTask: null,

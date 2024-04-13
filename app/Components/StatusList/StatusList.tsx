@@ -8,8 +8,8 @@ import type { FormInputs } from "@/app/Types/Types";
 const cx = classNames.bind(styles);
 
 type StatusListProps = {
-  register: UseFormRegister<FormInputs>;
-  setValue: UseFormSetValue<FormInputs>;
+  register?: UseFormRegister<FormInputs>;
+  setValue?: UseFormSetValue<FormInputs>;
   status?: string;
 };
 
@@ -21,6 +21,7 @@ function StatusList({ register, setValue, status }: StatusListProps) {
     state.columns.filter((column) => column.boardId === state.activeBoard)
   );
   const activeTask = useBoardsStore((state) => state.activeTask);
+  const changeTaskStatus = useBoardsStore((state) => state.changeTaskStatus);
 
   const closeStatusList = () => {
     setIsOpenStatusList((current) => !current);
@@ -29,8 +30,12 @@ function StatusList({ register, setValue, status }: StatusListProps) {
   const onSelectStatus = (newStatus: string, colId: number) => {
     setStatusSelected(newStatus);
     setIsOpenStatusList(false);
-    setValue("status", newStatus);
-    setValue("colId", colId.toString());
+    if (status === undefined) {
+      setValue?.("status", newStatus);
+      setValue?.("colId", colId.toString());
+    } else {
+      changeTaskStatus(newStatus, colId);
+    }
   };
 
   useEffect(() => {
@@ -58,9 +63,13 @@ function StatusList({ register, setValue, status }: StatusListProps) {
         <input
           type="text"
           style={{ display: "none" }}
-          {...register("status")}
+          {...register?.("status")}
         />
-        <input type="text" style={{ display: "none" }} {...register("colId")} />
+        <input
+          type="text"
+          style={{ display: "none" }}
+          {...register?.("colId")}
+        />
         <span>{statusSelected ? statusSelected : columnsName[0].name}</span>
         <svg
           className={cx("chevron", {
