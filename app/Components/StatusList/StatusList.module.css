@@ -13,6 +13,18 @@
   font-size: var(--font--medium);
 }
 
+.button {
+  cursor: pointer;
+}
+
+.chevron {
+  transition: all 0.1s ease-in;
+}
+
+.rotateChevron {
+  transform: rotateZ(180deg);
+}
+
 .currentStatus {
   display: flex;
   align-items: center;
@@ -34,13 +46,15 @@
 
 .statusList {
   position: absolute;
-  bottom: -140px;
+  top: 100%;
   display: flex;
   flex-direction: column;
+  height: 120px;
   width: 100%;
   border-radius: 5px;
   padding: 15px;
   background: var(--primary-background-color);
+  overflow: auto;
 }
 
 .hidden {
