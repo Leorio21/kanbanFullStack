@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: fit-content;
+  width: 300px;
+  min-width: 300px;
   border-right: 1px solid var(--board-content--border);
   background: var(--secondary-background-color);
 }

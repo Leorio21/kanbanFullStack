@@ -6,10 +6,11 @@
   width: 300px;
   border: 1px solid var(--board-content--border);
   padding-left: 34px;
+  transition: all 0.3s ease-in;
 }
 
 .containerReduce {
-  width: 260px;
+  width: 200px;
 }
 
 .barContainer {

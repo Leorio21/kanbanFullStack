@@ -4,16 +4,11 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  width: 300px;
+  width: 100%;
   padding-bottom: 90px;
-  background: var(--secondary-background-color);
   color: var(--secondary-font-color);
   font-size: var(--font--large);
   font-weight: bold;
-}
-
-.close {
-  display: none;
 }
 
 .boardListContainer {
