@@ -91,7 +91,12 @@ function StatusList({
           <path stroke="#635FC7" strokeWidth="2" fill="none" d="M9 6 5 2 1 6" />
         </svg>
       </p>
-      <div className={cx("statusList", { hidden: !isOpenStatusList })}>
+      <div
+        className={cx("statusList", {
+          hidden: !isOpenStatusList,
+          statusListOpen: isOpenStatusList,
+        })}
+      >
         {columnsBoard.map((column) => (
           <p
             key={column.id}
