@@ -6,10 +6,12 @@ import Menu from "./Menu/Menu";
 
 function SideBar() {
   return (
-    <div className={classNames(styles.container)}>
-      <Menu />
+    <>
+      <div className={classNames(styles.container)}>
+        <Menu />
+      </div>
       <ToggleSideBar />
-    </div>
+    </>
   );
 }
 

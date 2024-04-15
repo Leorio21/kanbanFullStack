@@ -2,8 +2,14 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  height: 100%;
   width: 300px;
-  padding: 34px;
+  border: 1px solid var(--board-content--border);
+  padding-left: 34px;
+}
+
+.containerReduce {
+  width: 260px;
 }
 
 .barContainer {
@@ -24,14 +30,14 @@
 }
 
 .bar2 {
-  background: rgba(var(--purple), .75);
+  background: rgba(var(--purple), 0.75);
 }
 
 .bar3 {
-  background: rgba(var(--purple), .5);
+  background: rgba(var(--purple), 0.5);
 }
 
 .title {
-  font-size: var(--font--extra-large);;
+  font-size: var(--font--extra-large);
   font-weight: bold;
 }

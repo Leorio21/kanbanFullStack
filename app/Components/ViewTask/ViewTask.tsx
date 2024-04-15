@@ -66,7 +66,7 @@ function ViewTask() {
               <Subtask key={index} subtask={subtask} />
             ))}
           </div>
-          <StatusList status={task[0].status} />
+          <StatusList status={task[0].status} taskColumnId={task[0].columnId} />
         </article>
         {isOpenDeleteForm && (
           <Delete type="task" name={task[0].title}>

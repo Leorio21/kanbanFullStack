@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  border-bottom: 1px solid var(--board-content--border);
   padding: 0 20px;
 }
 
@@ -20,4 +21,14 @@
   align-items: center;
   gap: 15px;
   height: 100%;
+}
+
+.buttonContent {
+  display: none;
+}
+
+@media (width >= 768px) {
+  .buttonContent {
+    display: flex;
+  }
 }

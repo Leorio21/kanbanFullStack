@@ -3,5 +3,6 @@
   flex-direction: column;
   height: 100%;
   width: fit-content;
+  border-right: 1px solid var(--board-content--border);
   background: var(--secondary-background-color);
 }
