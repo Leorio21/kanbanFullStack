@@ -4,13 +4,11 @@ import styles from "./Content.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import Empty from "./Empty/Empty";
 import Column from "./Column/Column";
-import ViewTask from "../../ViewTask/ViewTask";
 import Title from "./Title/Title";
 
 function Content() {
   const columnColor = ["blue", "purple", "green", "red", "yellow"];
   const activeBoard = useBoardsStore((state) => state.activeBoard);
-  const activeTask = useBoardsStore((state) => state.activeTask);
   const columns = useBoardsStore((state) =>
     state.columns.filter((column) => column.boardId === state.activeBoard)
   );
@@ -41,7 +39,6 @@ function Content() {
         ))}
         <Column />
       </div>
-      {activeTask !== null && <ViewTask />}
     </div>
   );
 }

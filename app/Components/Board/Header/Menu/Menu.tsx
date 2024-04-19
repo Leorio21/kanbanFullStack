@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { useBoardsStore } from "@/app/Stores/useBoards";
-import classNames from "classnames";
+import classNames from "classnames/bind";
 import styles from "./Menu.module.css";
 import { ElipsisMenu, Item } from "@/app/Components/ElipsisMenu/ElipsisMenu";
 import Button from "@/app/Components/Form/Components/Button/Button";
 import Delete from "@/app/Components/Delete/Delete";
+
+const cx = classNames.bind(styles);
 
 function Menu() {
   const [isOpenDeleteForm, setIsOpenDeleteForm] = useState(false);
@@ -13,7 +15,7 @@ function Menu() {
   const board = useBoardsStore((state) =>
     state.boards.filter((board) => board.id === activeBoard)
   );
-  const boardHasColumns = useBoardsStore(
+  const hasBoardColumns = useBoardsStore(
     (state) =>
       state.columns.filter((column) => column.boardId === activeBoard).length >
       0
@@ -21,6 +23,8 @@ function Menu() {
   const openTaskForm = useBoardsStore((state) => state.openTaskForm);
   const openBoardForm = useBoardsStore((state) => state.openBoardForm);
   const deleteBoard = useBoardsStore((state) => state.deleteBoard);
+  const closeSideBar = useBoardsStore((state) => state.closeSideBar);
+  const isSideBarClosed = useBoardsStore((state) => state.isSideBarClosed);
 
   const openDeleteForm = (newValue: boolean) => {
     setIsOpenDeleteForm(newValue);
@@ -35,13 +39,29 @@ function Menu() {
 
   if (activeBoard !== null) {
     return (
-      <div className={classNames(styles.container)}>
-        <p className={classNames(styles.title)}>{board[0].name}</p>
-        <div className={classNames(styles.buttonsContainer)}>
+      <div className={cx("container")}>
+        <p className={cx("title")} onClick={() => closeSideBar(false)}>
+          {board[0].name}
+          <svg
+            className={cx("chevron", {
+              rotateChevron: !isSideBarClosed,
+            })}
+            width="10"
+            height="7"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke="#635FC7"
+              strokeWidth="2"
+              fill="none"
+              d="M9 6 5 2 1 6"
+            />
+          </svg>
+        </p>
+        <div className={cx("buttonsContainer")}>
           <Button
             color="purple"
-            size="medium"
-            disable={!boardHasColumns}
+            disable={!hasBoardColumns}
             onClick={() => openTaskForm(true, "new")}
           >
             <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +95,7 @@ function Menu() {
             <Button
               color="white"
               size="medium"
-              width="auto"
+              width="max"
               onClick={() => openDeleteForm(false)}
             >
               Annuler

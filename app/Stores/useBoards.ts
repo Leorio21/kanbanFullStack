@@ -14,7 +14,7 @@ interface BoardsState {
   subtasks: Subtask[];
   nextsubtaskIndex: number;
   activeBoard: number | null;
-  sideBarIsCLosed: boolean;
+  isSideBarClosed: boolean;
   activeTask: number | null;
   displayBoardForm: { isOpen: boolean; method: "new" | "modify" | "" };
   displayTaskForm: { isOpen: boolean; method: "new" | "modify" | "" };
@@ -31,7 +31,7 @@ interface BoardsState {
   deleteTask: () => void;
   changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
   deleteSubtasks: (subtaskId: number) => void;
-  openSideBar: () => void;
+  closeSideBar: (newStatus: boolean) => void;
   changeActiveBoard: (newActiveBoard: number) => void;
   changeActiveTask: (newActiveTask: number | null) => void;
   openBoardForm: (
@@ -56,7 +56,7 @@ export const useBoardsStore = create<BoardsState>()(
       nextTaskIndex: 0,
       subtasks: [],
       nextsubtaskIndex: 0,
-      sideBarIsCLosed: false,
+      isSideBarClosed: false,
       activeBoard: null,
       activeTask: null,
       displayBoardForm: { isOpen: false, method: "" },
@@ -311,9 +311,9 @@ export const useBoardsStore = create<BoardsState>()(
             ...current.subtasks.filter((subtask) => subtask.id !== subtaskId),
           ],
         })),
-      openSideBar: () =>
-        set((current) => ({
-          sideBarIsCLosed: current.sideBarIsCLosed ? false : true,
+      closeSideBar: (newStatus) =>
+        set(() => ({
+          isSideBarClosed: newStatus,
         })),
       changeActiveBoard: (newActiveBoard) =>
         set(() => ({

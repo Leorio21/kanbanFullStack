@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./InputList.module.css";
 import Input from "../Input/Input";
@@ -156,6 +156,7 @@ function InputList({
     ];
   };
 
+  const listRef = useRef<HTMLDivElement>(null);
   const [inputs, setInputs] = useState(loadInputValue());
   const [nextIndex, setNextIndex] = useState(inputs.length);
 
@@ -206,11 +207,11 @@ function InputList({
 
   return (
     <>
-      <div className={classNames(styles.inputList)}>
+      <div ref={listRef} className={classNames(styles.inputList)}>
         {title}
         {inputs.map((input) => input.jsx)}
       </div>
-      <Button color="white" size="medium" width="auto" onClick={addColumnInput}>
+      <Button color="white" size="medium" width="max" onClick={addColumnInput}>
         {buttonText[type]}
       </Button>
     </>

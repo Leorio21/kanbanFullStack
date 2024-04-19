@@ -10,6 +10,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1;
 }
 
 .subMenuContainer {
@@ -32,7 +33,7 @@
 
 .task {
   top: 60px;
-  right: -96px;
+  right: -20px;
 }
 
 .hide {
@@ -56,4 +57,10 @@
 
 .delete {
   color: rgb(var(--red));
+}
+
+@media (width >= 768px) {
+  .task {
+    right: -96px;
+  }
 }

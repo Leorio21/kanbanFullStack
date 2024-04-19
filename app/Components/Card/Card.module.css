@@ -3,12 +3,12 @@
   align-items: center;
   gap: 20px;
   height: 48px;
-  width: 276px;
+  width: 240px;
   padding-left: 30px;
   border-radius: 0 25px 25px 0;
   color: var(--secondary-font-color);
   cursor: pointer;
-  font-size: var(--font--large);
+  font-size: var(--font--medium);
   font-weight: bold;
 }
 
@@ -36,4 +36,11 @@
 
 .active svg path {
   fill: rgb(var(--white--light));
+}
+
+@media (width >= 768px) {
+  .container {
+    width: 276px;
+    font-size: var(--font--large);
+  }
 }

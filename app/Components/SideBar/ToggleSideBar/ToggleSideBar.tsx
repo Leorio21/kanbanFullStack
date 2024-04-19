@@ -6,8 +6,8 @@ import { useBoardsStore } from "@/app/Stores/useBoards";
 const cx = classNames.bind(styles);
 
 function ToggleSideBar() {
-  const sideBarIsClosed = useBoardsStore((state) => state.sideBarIsCLosed);
-  const openSideBar = useBoardsStore((state) => state.openSideBar);
+  const sideBarIsClosed = useBoardsStore((state) => state.isSideBarClosed);
+  const closeSideBar = useBoardsStore((state) => state.closeSideBar);
 
   return (
     <div
@@ -16,7 +16,7 @@ function ToggleSideBar() {
         open: !sideBarIsClosed,
         close: sideBarIsClosed,
       })}
-      onClick={openSideBar}
+      onClick={() => closeSideBar(!sideBarIsClosed)}
     >
       {sideBarIsClosed ? (
         <svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">

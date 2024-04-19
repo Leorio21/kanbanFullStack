@@ -5,12 +5,14 @@
   justify-content: space-between;
   height: 100%;
   border-bottom: 1px solid var(--board-content--border);
-  padding: 0 20px;
+  padding: 0;
 }
 
 .title {
   display: flex;
   align-items: center;
+  gap: 10px;
+  cursor: pointer;
   font-size: var(--font--large);
   font-weight: bold;
 }
@@ -27,7 +29,27 @@
   display: none;
 }
 
+.chevron {
+  transition: all 0.1s ease-in;
+}
+
+.rotateChevron {
+  transform: rotateZ(180deg);
+}
+
 @media (width >= 768px) {
+  .chevron {
+    display: none;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .title {
+    cursor: auto;
+  }
+
   .buttonContent {
     display: flex;
   }

@@ -7,6 +7,7 @@ import Button from "../Components/Button/Button";
 import Input from "../Components/Input/Input";
 import InputList from "../Components/InputList/InputList";
 import type { FormInputs } from "@/app/Types/Types";
+import BackDrop from "../../BackDrop/BackDrop";
 
 type FormBoardProps = {
   boardId?: number;
@@ -55,7 +56,7 @@ function FormBoard({ boardId }: FormBoardProps) {
   };
 
   return (
-    <div className={classNames(styles.container)} onClick={closeForm}>
+    <BackDrop onClick={closeForm}>
       <form
         ref={formRef}
         className={classNames(styles.formContainer)}
@@ -88,13 +89,13 @@ function FormBoard({ boardId }: FormBoardProps) {
         <Button
           color="purple"
           size="medium"
-          width="auto"
+          width="max"
           onClick={handleSubmit(onSubmit)}
         >
           {boardId !== undefined ? "Sauvegarder" : "Créer"}
         </Button>
       </form>
-    </div>
+    </BackDrop>
   );
 }
 

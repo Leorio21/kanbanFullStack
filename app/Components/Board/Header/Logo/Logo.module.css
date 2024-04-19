@@ -3,14 +3,11 @@
   align-items: center;
   gap: 20px;
   height: 100%;
-  width: 300px;
+  width: 60px;
   border: 1px solid var(--board-content--border);
-  padding-left: 34px;
-  transition: all 0.3s ease-in;
-}
-
-.containerReduce {
-  width: 200px;
+  border-right-color: transparent;
+  padding: 0 16px;
+  transition: width 0.3s ease-in;
 }
 
 .barContainer {
@@ -39,6 +36,23 @@
 }
 
 .title {
-  font-size: var(--font--extra-large);
-  font-weight: bold;
+  display: none;
+}
+
+@media (width >=768px) {
+  .container {
+    width: 300px;
+    border-right-color: var(--board-content--border);
+    padding-left: 34px;
+  }
+
+  .containerReduce {
+    width: 200px;
+  }
+
+  .title {
+    display: block;
+    font-size: var(--font--extra-large);
+    font-weight: bold;
+  }
 }

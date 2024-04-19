@@ -1,9 +1,37 @@
 .container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 300px;
-  min-width: 300px;
+  align-items: center;
   border-right: 1px solid var(--board-content--border);
-  background: var(--secondary-background-color);
+  padding-top: 80px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.close {
+  display: none;
+}
+
+@media (width >= 768px) {
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    width: 300px;
+    min-width: 300px;
+    border-radius: unset;
+    border-right: 1px solid var(--board-content--border);
+    padding-top: 0;
+    background: var(--secondary-background-color);
+  }
+
+  .close {
+    display: flex;
+  }
 }

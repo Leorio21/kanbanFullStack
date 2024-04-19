@@ -1,6 +1,7 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import classNames from "classnames/bind";
 import styles from "./Delete.module.css";
+import BackDrop from "../BackDrop/BackDrop";
 
 const cx = classNames.bind(styles);
 
@@ -15,12 +16,9 @@ function Delete({ name, type, children }: DeleteProps) {
     board: `le tableau '${name}'. Cette action supprimera toutes les colonnes, tâches et sous-tâches`,
     task: `la tâche '${name}' et les sous-tâches`,
   };
+
   return (
-    <div
-      className={cx("container", {
-        backdrop: type === "board",
-      })}
-    >
+    <BackDrop backdrop={type === "board"}>
       <div className={cx("messageContainer")}>
         <p className={cx("title")}>Supprimer {title[type]}</p>
         <p className={cx("message")}>
@@ -29,7 +27,7 @@ function Delete({ name, type, children }: DeleteProps) {
         </p>
         <div className={cx("deleteCancelButtonContainer")}>{children}</div>
       </div>
-    </div>
+    </BackDrop>
   );
 }
 

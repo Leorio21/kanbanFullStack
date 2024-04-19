@@ -7,6 +7,7 @@ import Delete from "../Delete/Delete";
 import Button from "../Form/Components/Button/Button";
 import StatusList from "../StatusList/StatusList";
 import Subtask from "./Subtask/Subtask";
+import BackDrop from "../BackDrop/BackDrop";
 
 const cx = classNames.bind(styles);
 
@@ -41,9 +42,9 @@ function ViewTask() {
   };
 
   return (
-    <section className={cx("container")} onClick={closeTask}>
-      <div ref={taskRef}>
-        <article className={cx("taskContainer", { hidden: isOpenDeleteForm })}>
+    <BackDrop onClick={closeTask}>
+      <article ref={taskRef} className={cx("taskContainer")}>
+        <div className={cx({ hidden: isOpenDeleteForm })}>
           <div className={cx("titleContainer")}>
             <p className={cx("title")}>{task[0].title}</p>
             <ElipsisMenu position="task">
@@ -67,7 +68,7 @@ function ViewTask() {
             ))}
           </div>
           <StatusList status={task[0].status} taskColumnId={task[0].columnId} />
-        </article>
+        </div>
         {isOpenDeleteForm && (
           <Delete type="task" name={task[0].title}>
             <Button
@@ -81,15 +82,15 @@ function ViewTask() {
             <Button
               color="white"
               size="medium"
-              width="auto"
+              width="max"
               onClick={() => openCloseDeleteForm(false)}
             >
               Annuler
             </Button>
           </Delete>
         )}
-      </div>
-    </section>
+      </article>
+    </BackDrop>
   );
 }
 

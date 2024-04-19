@@ -8,6 +8,7 @@ import FormBoard from "../Form/FormBoard/FormBoard";
 import FormTask from "../Form/FormTask/FormTask";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import ToggleSideBar from "../SideBar/ToggleSideBar/ToggleSideBar";
+import ViewTask from "../ViewTask/ViewTask";
 
 const cx = classNames.bind(styles);
 
@@ -16,13 +17,12 @@ function Board() {
   const displayTaskForm = useBoardsStore((state) => state.displayTaskForm);
   const activeBoard = useBoardsStore((state) => state.activeBoard);
   const activeTask = useBoardsStore((state) => state.activeTask);
-  const sideBarIsClosed = useBoardsStore((state) => state.sideBarIsCLosed);
-
+  const isSideBarClosed = useBoardsStore((state) => state.isSideBarClosed);
   return (
     <>
       <div className={cx("container")}>
         <Header />
-        <div className={cx("content", { sideBarClose: sideBarIsClosed })}>
+        <div className={cx("content", { sideBarClose: isSideBarClosed })}>
           <SideBar />
           <Content />
         </div>
@@ -40,6 +40,7 @@ function Board() {
       {displayTaskForm.isOpen &&
         displayTaskForm.method === "modify" &&
         activeTask !== null && <FormTask taskId={activeTask} />}
+      {activeTask !== null && <ViewTask />}
     </>
   );
 }

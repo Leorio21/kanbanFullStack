@@ -9,6 +9,7 @@ import Input from "../Components/Input/Input";
 import TextArea from "../Components/TextArea/TextArea";
 import InputList from "../Components/InputList/InputList";
 import type { FormInputs } from "@/app/Types/Types";
+import BackDrop from "../../BackDrop/BackDrop";
 
 type FormTaskProps = {
   taskId?: number;
@@ -59,11 +60,7 @@ function FormTask({ taskId }: FormTaskProps) {
   };
 
   return (
-    <div
-      className={classNames(styles.container)}
-      onClick={closeForm}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <BackDrop onClick={closeForm} onSubmit={handleSubmit(onSubmit)}>
       <form ref={formRef} className={classNames(styles.formContainer)}>
         <p className={classNames(styles.title)}>
           {taskId !== undefined
@@ -107,13 +104,13 @@ function FormTask({ taskId }: FormTaskProps) {
         <Button
           color="purple"
           size="medium"
-          width="auto"
+          width="max"
           onClick={handleSubmit(onSubmit)}
         >
           {taskId !== undefined ? "Sauvegarder" : "Créer"}
         </Button>
       </form>
-    </div>
+    </BackDrop>
   );
 }
 

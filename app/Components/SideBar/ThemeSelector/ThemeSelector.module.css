@@ -4,7 +4,15 @@
   align-items: center;
   gap: 23px;
   height: 48px;
-  width: 250px;
+  width: 238px;
+  margin-top: 15px;
   border-radius: 6px;
   background: var(--primary-background-color);
+}
+
+@media (width >= 768px) {
+  .container {
+    width: 250px;
+    margin-top: 0;
+  }
 }

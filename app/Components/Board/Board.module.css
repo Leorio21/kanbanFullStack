@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -12,7 +13,9 @@
   transition: all 0.3s ease-in;
 }
 
-.sideBarClose {
-  transform: translateX(-300px);
-  width: calc(100% + 300px);
+@media (width >= 768px) {
+  .sideBarClose {
+    transform: translateX(-300px);
+    width: calc(100% + 300px);
+  }
 }

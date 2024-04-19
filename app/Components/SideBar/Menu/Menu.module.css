@@ -1,11 +1,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  padding-bottom: 90px;
+  width: 264px;
+  min-width: 264px;
+  border-radius: 6px;
+  padding-bottom: 20px;
+  background: var(--secondary-background-color);
   color: var(--secondary-font-color);
   font-size: var(--font--large);
   font-weight: bold;
@@ -20,4 +21,12 @@
 .boardListTitle {
   width: 100%;
   padding: 20px 0 20px 30px;
+}
+
+@media (width >= 768px) {
+  .container {
+    justify-content: space-between;
+    height: 100%;
+    padding-bottom: 90px;
+  }
 }
