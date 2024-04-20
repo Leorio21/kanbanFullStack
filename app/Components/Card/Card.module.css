@@ -14,11 +14,11 @@
 
 .container:hover {
   background: var(--board-toggle--hover);
-  color: rgb(var(--purple));
+  color: rgb(99, 95, 199);
 }
 
 .container:hover svg path {
-  fill: rgb(var(--purple));
+  fill: rgb(99, 95, 199);
 }
 
 .new {
