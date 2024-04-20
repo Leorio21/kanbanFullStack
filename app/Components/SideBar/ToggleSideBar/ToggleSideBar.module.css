@@ -3,11 +3,11 @@
 }
 
 .container:hover {
-  color: rgb(var(--purple));
+  color: rgb(99, 95, 199);
 }
 
 .container:hover.open svg path {
-  fill: rgb(var(--purple));
+  fill: rgb(99, 95, 199);
 }
 
 .container:hover.close svg path {
@@ -28,7 +28,7 @@
   justify-content: flex-end;
   border-radius: 0 25px 25px 0;
   padding-right: 19px;
-  background: rgb(var(--purple));
+  background: rgb(99, 95, 199);
   transform: translateX(calc(-100% + 56px));
 }
 

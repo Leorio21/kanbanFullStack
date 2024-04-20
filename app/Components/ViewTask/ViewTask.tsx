@@ -22,6 +22,7 @@ function ViewTask() {
     state.subtasks.filter((subtask) => subtask.taskId === task[0].id)
   );
   const openTaskForm = useBoardsStore((state) => state.openTaskForm);
+  const displayTaskForm = useBoardsStore((state) => state.displayTaskForm);
   const changeActiveTask = useBoardsStore((state) => state.changeActiveTask);
   const deleteTask = useBoardsStore((state) => state.deleteTask);
 
@@ -43,7 +44,10 @@ function ViewTask() {
 
   return (
     <BackDrop onClick={closeTask}>
-      <article ref={taskRef} className={cx("taskContainer")}>
+      <article
+        ref={taskRef}
+        className={cx("taskContainer", { hidden: displayTaskForm.isOpen })}
+      >
         <div className={cx({ hidden: isOpenDeleteForm })}>
           <div className={cx("titleContainer")}>
             <p className={cx("title")}>{task[0].title}</p>

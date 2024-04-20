@@ -30,7 +30,7 @@
 }
 
 .active {
-  background: rgb(var(--purple));
+  background: rgb(99, 95, 199);
   color: rgb(var(--white--light));
 }
 

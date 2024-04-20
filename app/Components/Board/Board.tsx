@@ -28,6 +28,7 @@ function Board() {
         </div>
         <ToggleSideBar />
       </div>
+      {activeTask !== null && <ViewTask />}
       {displayBoardForm.isOpen && displayBoardForm.method === "new" && (
         <FormBoard />
       )}
@@ -40,7 +41,6 @@ function Board() {
       {displayTaskForm.isOpen &&
         displayTaskForm.method === "modify" &&
         activeTask !== null && <FormTask taskId={activeTask} />}
-      {activeTask !== null && <ViewTask />}
     </>
   );
 }

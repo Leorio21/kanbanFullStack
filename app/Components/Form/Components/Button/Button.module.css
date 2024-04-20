@@ -26,7 +26,7 @@
 }
 
 .purple {
-  background: var(--button-background-color--purple);
+  background: rgb(99, 95, 199);
   color: rgb(var(--white--light));
 }
 

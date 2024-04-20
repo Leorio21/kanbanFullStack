@@ -5,7 +5,7 @@
   width: 40px;
   border-radius: 25px;
   padding: 3px;
-  background: rgb(var(--purple));
+  background: rgb(99, 95, 199);
 }
 
 .container:hover {
@@ -17,7 +17,7 @@
   width: 14px;
   border-radius: 25px;
   background: rgb(var(--white--light));
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .dark {

@@ -52,7 +52,7 @@
 }
 
 .standard {
-  color: rgb(var(--grey));
+  color: var(--secondary-font-color);
 }
 
 .delete {

@@ -6,7 +6,8 @@
   --black--light: 32, 33, 44; /*#20212C*/
   --darkGrey: 43, 44, 55; /*#2B2C37*/
   --darkGrey--light: 62, 63, 78; /*#3E3F4E*/
-  --grey: 130, 143, 163; /*#828FA3*/
+  --grey: 96, 98, 133; /*#606285*/
+  --grey--dark-mode: 165, 173, 187; /* #828FA3 */
   --grey--light: 228, 235, 250; /*#E4EBFA*/
   --white: 244, 247, 253; /*#F4F7FD*/
   --white--light: 255, 255, 255; /*#FFFFFF*/
@@ -41,11 +42,13 @@
 }
 
 .theme-dark {
+  --purple: 148, 146, 217; /*#9492D9 */
+
   --primary-background-color: rgb(var(--black--light));
   --secondary-background-color: rgb(var(--darkGrey));
 
   --primary-font-color: rgb(var(--white));
-  --secondary-font-color: rgb(var(--grey));
+  --secondary-font-color: rgb(var(--grey--dark-mode));
   --tertiary-font-color: rgb(var(--white));
 
   --board-toggle--hover: rgb(var(--white--light));
@@ -84,11 +87,13 @@ a {
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --purple: 148, 146, 217; /*#9492D9 */
+
     --primary-background-color: rgb(var(--black--light));
     --secondary-background-color: rgb(var(--darkGrey));
 
     --primary-font-color: rgb(var(--white));
-    --secondary-font-color: rgb(var(--grey));
+    --secondary-font-color: rgb(var(--grey--dark-mode));
     --tertiary-font-color: rgb(var(--white));
 
     --board-toggle--hover: rgb(var(--purple--light));
