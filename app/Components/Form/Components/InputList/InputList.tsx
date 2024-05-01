@@ -3,16 +3,16 @@ import classNames from "classnames";
 import styles from "./InputList.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import type { Column, FormInputs, Subtask } from "@/app/Types/Types";
+import type { TColumn, TFormInputs, TSubtask } from "@/app/Types/Types";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 type InputListProps = {
-  register: UseFormRegister<FormInputs>;
-  errors: FieldErrors<FormInputs>;
+  register: UseFormRegister<TFormInputs>;
+  errors: FieldErrors<TFormInputs>;
   title: string;
   type: "column" | "subtask";
-  columns?: Column[];
-  subtasks?: Subtask[];
+  columns?: TColumn[];
+  subtasks?: TSubtask[];
   placeHolder?: string[];
   addIdToDelete: (idToDelete: number) => void;
 };

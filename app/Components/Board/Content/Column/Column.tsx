@@ -1,35 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import styles from "./Column.module.css";
-import type { Column } from "@/app/Types/Types";
+import type { TTask } from "@/app/Types/Types";
 import Task from "./Task/Task";
 import { useBoardsStore } from "@/app/Stores/useBoards";
+import { ParentConfig } from "@formkit/drag-and-drop";
+import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
 type ColumnProps = {
-  columnId?: number;
+  columnId: number;
 };
 
 function Column({ columnId }: ColumnProps) {
-  const openBoardForm = useBoardsStore((state) => state.openBoardForm);
-  const tasks = useBoardsStore((state) =>
+  const changeTaskStatus = useBoardsStore((state) => state.changeTaskStatus);
+  const taskAddedModified = useBoardsStore((state) => state.taskAddedModified);
+  const updateTasks = useBoardsStore((state) => state.updateTasks);
+  const config1: Partial<ParentConfig<TTask>> = { group: "taskList" };
+
+  config1.handleEnd = (data) => {
+    const taskID = Number(data.targetData.node.data.value.id);
+    const destination = Number(data.targetData.parent.el.id);
+    changeTaskStatus(destination, taskID);
+  };
+
+  const tasksList = useBoardsStore((state) =>
     state.tasks.filter((task) => task.columnId === columnId)
   );
-  if (columnId !== undefined) {
-    return (
-      <div className={classNames(`${styles.container} ${styles.column}`)}>
-        {tasks.map((task) => (
-          <Task key={task.id} task={task} />
-        ))}
-      </div>
-    );
-  }
+  const [colRef, tasks, setTasks] = useDragAndDrop<HTMLDivElement, TTask>(
+    tasksList,
+    config1
+  );
+
+  useEffect(() => {
+    if (taskAddedModified) {
+      setTasks(tasksList);
+      updateTasks(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tasksList]);
 
   return (
     <div
-      className={classNames(`${styles.container} ${styles.newColumn}`)}
-      onClick={() => openBoardForm(true, "modify")}
+      ref={colRef}
+      className={classNames(`${styles.container} ${styles.column}`)}
+      id={columnId.toString()}
     >
-      + Nouvelle colonne
+      {tasks.map((task) => (
+        <Task key={task.id} task={task} />
+      ))}
     </div>
   );
 }

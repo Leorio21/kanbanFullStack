@@ -1,15 +1,15 @@
-export type Board = {
+export type TBoard = {
   id: number;
   name: string;
 };
 
-export type Column = {
+export type TColumn = {
   id: number;
   boardId: number;
   name: string;
 };
 
-export type Task = {
+export type TTask = {
   id: number;
   boardId: number;
   columnId: number;
@@ -18,7 +18,7 @@ export type Task = {
   status: string;
 };
 
-export type Subtask = {
+export type TSubtask = {
   id: number;
   boardId: number;
   columnId: number;
@@ -27,7 +27,7 @@ export type Subtask = {
   isCompleted: boolean;
 };
 
-export type FormInputs = {
+export type TFormInputs = {
   name: string;
   [key: string]: string;
 };

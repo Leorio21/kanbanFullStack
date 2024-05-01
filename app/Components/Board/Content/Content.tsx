@@ -37,7 +37,6 @@ function Content() {
         {columns.map((column) => (
           <Column key={column.id} columnId={column.id} />
         ))}
-        <Column />
       </div>
     </div>
   );

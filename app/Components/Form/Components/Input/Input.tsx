@@ -2,13 +2,13 @@ import React, { ComponentPropsWithoutRef, useId } from "react";
 import classNames from "classnames/bind";
 import styles from "./Input.module.css";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import type { FormInputs } from "@/app/Types/Types";
+import type { TFormInputs } from "@/app/Types/Types";
 
 const cx = classNames.bind(styles);
 
 type InputProps = {
-  register: UseFormRegister<FormInputs>;
-  errors: FieldErrors<FormInputs>;
+  register: UseFormRegister<TFormInputs>;
+  errors: FieldErrors<TFormInputs>;
   label?: string;
   notNull?: boolean;
   content?: string;

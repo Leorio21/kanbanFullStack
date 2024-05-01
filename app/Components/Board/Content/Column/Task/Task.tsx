@@ -1,13 +1,13 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./Task.module.css";
-import type { Task } from "@/app/Types/Types";
+import type { TTask } from "@/app/Types/Types";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 
 const cx = classNames.bind(styles);
 
 type TaskProps = {
-  task: Task;
+  task: TTask;
 };
 
 function Task({ task }: TaskProps) {

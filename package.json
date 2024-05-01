@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/drag-and-drop": "^0.0.38",
     "classnames": "^2.5.1",
     "next": "14.1.4",
     "react": "^18",

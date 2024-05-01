@@ -3,13 +3,13 @@ import classNames from "classnames/bind";
 import styles from "./StatusList.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 import { UseFormRegister, UseFormSetValue } from "react-hook-form";
-import type { FormInputs } from "@/app/Types/Types";
+import type { TFormInputs } from "@/app/Types/Types";
 
 const cx = classNames.bind(styles);
 
 type StatusListProps = {
-  register?: UseFormRegister<FormInputs>;
-  setValue?: UseFormSetValue<FormInputs>;
+  register?: UseFormRegister<TFormInputs>;
+  setValue?: UseFormSetValue<TFormInputs>;
   status?: string;
   taskColumnId?: number;
 };
@@ -28,6 +28,7 @@ function StatusList({
   );
   const activeTask = useBoardsStore((state) => state.activeTask);
   const changeTaskStatus = useBoardsStore((state) => state.changeTaskStatus);
+  const updateTasks = useBoardsStore((state) => state.updateTasks);
 
   const closeStatusList = () => {
     setIsOpenStatusList((current) => !current);
@@ -40,7 +41,8 @@ function StatusList({
       setValue("status", newStatus);
       setValue("colId", colId.toString());
     } else {
-      changeTaskStatus(newStatus, colId);
+      changeTaskStatus(colId);
+      updateTasks(true);
     }
   };
 

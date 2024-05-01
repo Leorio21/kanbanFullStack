@@ -2,11 +2,11 @@ import React, { ComponentPropsWithoutRef, useId, useState } from "react";
 import classNames from "classnames";
 import styles from "./TextArea.module.css";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import type { FormInputs } from "@/app/Types/Types";
+import type { TFormInputs } from "@/app/Types/Types";
 
 type TextAreaProps = {
-  register: UseFormRegister<FormInputs>;
-  errors: FieldErrors<FormInputs>;
+  register: UseFormRegister<TFormInputs>;
+  errors: FieldErrors<TFormInputs>;
   label: string;
   fieldName: string;
   content?: string;

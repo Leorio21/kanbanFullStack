@@ -8,7 +8,7 @@ import StatusList from "../../StatusList/StatusList";
 import Input from "../Components/Input/Input";
 import TextArea from "../Components/TextArea/TextArea";
 import InputList from "../Components/InputList/InputList";
-import type { FormInputs } from "@/app/Types/Types";
+import type { TFormInputs } from "@/app/Types/Types";
 import BackDrop from "../../BackDrop/BackDrop";
 
 type FormTaskProps = {
@@ -22,7 +22,7 @@ function FormTask({ taskId }: FormTaskProps) {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<TFormInputs>();
   const task = useBoardsStore((state) =>
     state.tasks.filter((task) => task.id === taskId)
   );
@@ -34,6 +34,7 @@ function FormTask({ taskId }: FormTaskProps) {
   const openTaskForm = useBoardsStore((state) => state.openTaskForm);
   const modifyTask = useBoardsStore((state) => state.modifyTask);
   const deleteSubtasks = useBoardsStore((state) => state.deleteSubtasks);
+  const updateTasks = useBoardsStore((state) => state.updateTasks);
 
   const [subtaskIdToDelete, setSubtaskIdToDelete] = useState<number[]>([]);
 
@@ -48,15 +49,15 @@ function FormTask({ taskId }: FormTaskProps) {
     }
   };
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
+  const onSubmit: SubmitHandler<TFormInputs> = (data) => {
     if (taskId !== undefined) {
       modifyTask(data, taskId);
       subtaskIdToDelete.forEach((id) => deleteSubtasks(id));
-      openTaskForm(false);
     } else {
       addTask(data);
-      openTaskForm(false);
     }
+    updateTasks(true);
+    openTaskForm(false);
   };
 
   return (

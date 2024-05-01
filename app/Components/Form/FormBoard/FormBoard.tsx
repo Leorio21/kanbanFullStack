@@ -6,7 +6,7 @@ import { useBoardsStore } from "@/app/Stores/useBoards";
 import Button from "../Components/Button/Button";
 import Input from "../Components/Input/Input";
 import InputList from "../Components/InputList/InputList";
-import type { FormInputs } from "@/app/Types/Types";
+import type { TFormInputs } from "@/app/Types/Types";
 import BackDrop from "../../BackDrop/BackDrop";
 
 type FormBoardProps = {
@@ -19,7 +19,7 @@ function FormBoard({ boardId }: FormBoardProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<TFormInputs>();
   const board = useBoardsStore((state) =>
     state.boards.filter((board) => board.id === boardId)
   );
@@ -44,7 +44,7 @@ function FormBoard({ boardId }: FormBoardProps) {
     }
   };
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
+  const onSubmit: SubmitHandler<TFormInputs> = (data) => {
     if (boardId !== undefined) {
       modifyBoard(data, boardId);
       columnsIdToDelete.forEach((id) => deleteColumn(id));

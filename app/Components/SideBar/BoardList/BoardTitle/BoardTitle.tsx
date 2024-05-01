@@ -1,10 +1,10 @@
 import React from "react";
-import type { Board } from "@/app/Types/Types";
+import type { TBoard } from "@/app/Types/Types";
 import Card from "@/app/Components/Card/Card";
 import { useBoardsStore } from "@/app/Stores/useBoards";
 
 type BoardTitleProps = {
-  board?: Board;
+  board?: TBoard;
 };
 
 function BoardTitle({ board }: BoardTitleProps) {

@@ -1,23 +1,25 @@
 import { create } from "zustand";
-import type { Board, Column, Subtask, Task } from "../Types/Types";
+import type { TBoard, TColumn, TSubtask, TTask } from "../Types/Types";
 import boardsJson from "@/data.json";
 import { persist } from "zustand/middleware";
 
 interface BoardsState {
   dataLoaded: boolean;
-  boards: Board[];
+  boards: TBoard[];
   nextBoardIndex: number;
-  columns: Column[];
+  columns: TColumn[];
   nextColumnIndex: number;
-  tasks: Task[];
+  tasks: TTask[];
   nextTaskIndex: number;
-  subtasks: Subtask[];
+  subtasks: TSubtask[];
   nextsubtaskIndex: number;
+  taskAddedModified: boolean;
   activeBoard: number | null;
   isSideBarClosed: boolean;
   activeTask: number | null;
   displayBoardForm: { isOpen: boolean; method: "new" | "modify" | "" };
   displayTaskForm: { isOpen: boolean; method: "new" | "modify" | "" };
+  updateTasks: (newStatus: boolean) => void;
   addNewBoard: (newBoard: { [key: string]: string }) => void;
   modifyBoard: (
     boardModified: { [key: string]: string },
@@ -26,7 +28,7 @@ interface BoardsState {
   deleteBoard: () => void;
   deleteColumn: (columnIdToDelete: number) => void;
   addTask: (newTask: { [key: string]: string }) => void;
-  changeTaskStatus: (newStatus: string, colId: number) => void;
+  changeTaskStatus: (colId: number, taskId?: number) => void;
   modifyTask: (taskModified: { [key: string]: string }, taskId: number) => void;
   deleteTask: () => void;
   changesubtaskStatus: (subtaskId: number, newStatus: boolean) => void;
@@ -57,10 +59,12 @@ export const useBoardsStore = create<BoardsState>()(
       subtasks: [],
       nextsubtaskIndex: 0,
       isSideBarClosed: false,
+      taskAddedModified: false,
       activeBoard: null,
       activeTask: null,
       displayBoardForm: { isOpen: false, method: "" },
       displayTaskForm: { isOpen: false, method: "" },
+      updateTasks: (newStatus) => set(() => ({ taskAddedModified: newStatus })),
       addNewBoard: (newBoard) =>
         set((current) => {
           const newBoards = current.boards;
@@ -182,7 +186,7 @@ export const useBoardsStore = create<BoardsState>()(
         set((current) => {
           let taskId = current.nextTaskIndex;
           let subtaskId = current.nextsubtaskIndex;
-          const taskToAdd: Task = {
+          const taskToAdd: TTask = {
             id: taskId,
             boardId: current.activeBoard !== null ? current.activeBoard : 0,
             columnId: Number(newTask["colId"]),
@@ -219,17 +223,33 @@ export const useBoardsStore = create<BoardsState>()(
             nextsubtaskIndex: subtaskId,
           };
         }),
-      changeTaskStatus: (newStatus, colId) =>
-        set((current) => ({
-          tasks: [
+      changeTaskStatus: (colId, taskId) =>
+        set((current) => {
+          const currentTaskId = taskId ? taskId : current.activeTask;
+          let newStatus = current.columns.filter((col) => col.id === colId)[0]
+            .name;
+          if (newStatus === undefined) {
+            return {};
+          }
+          const tasks = [
             ...current.tasks.map((task) => {
-              if (task.id === current.activeTask) {
+              if (task.id === currentTaskId) {
                 return { ...task, columnId: colId, status: newStatus };
               }
               return task;
             }),
-          ],
-        })),
+          ];
+          return {
+            tasks: [
+              ...current.tasks.map((task) => {
+                if (task.id === currentTaskId) {
+                  return { ...task, columnId: colId, status: newStatus };
+                }
+                return task;
+              }),
+            ],
+          };
+        }),
       modifyTask: (taskModified, taskId) =>
         set((current) => {
           const newTasks = [
@@ -340,10 +360,10 @@ export const loadData = () => {
   let nextTaskIndex = 0;
   let nextsubtaskIndex = 0;
 
-  const boards: Board[] = [];
-  const columns: Column[] = [];
-  const tasks: Task[] = [];
-  const subtasks: Subtask[] = [];
+  const boards: TBoard[] = [];
+  const columns: TColumn[] = [];
+  const tasks: TTask[] = [];
+  const subtasks: TSubtask[] = [];
 
   boardsJson.boards.map((board) => {
     boards.push({ id: nextBoardIndex, name: board.name });

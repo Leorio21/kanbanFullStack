@@ -2,12 +2,12 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./Subtask.module.css";
 import { useBoardsStore } from "@/app/Stores/useBoards";
-import type { Subtask } from "@/app/Types/Types";
+import type { TSubtask } from "@/app/Types/Types";
 
 const cx = classNames.bind(styles);
 
 type SubtaskProps = {
-  subtask: Subtask;
+  subtask: TSubtask;
 };
 
 function Subtask({ subtask }: SubtaskProps) {
