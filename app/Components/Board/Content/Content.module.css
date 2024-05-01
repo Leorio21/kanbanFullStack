@@ -20,3 +20,21 @@
   height: 100%;
   width: 100%;
 }
+
+.newColumn {
+  display: flex;
+  width: var(--column-width);
+  min-width: var(--column-width);
+  border-radius: 6px;
+  color: var(--secondary-font-color);
+  align-items: center;
+  justify-content: center;
+  background: var(--newColumn-background);
+  cursor: pointer;
+  font-size: var(--font--large);
+  font-weight: bold;
+}
+
+.newColumn:hover {
+  color: rgb(var(--purple));
+}

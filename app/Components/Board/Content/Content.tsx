@@ -12,6 +12,7 @@ function Content() {
   const columns = useBoardsStore((state) =>
     state.columns.filter((column) => column.boardId === state.activeBoard)
   );
+  const openBoardForm = useBoardsStore((state) => state.openBoardForm);
 
   if (activeBoard === null) {
     return;
@@ -37,6 +38,12 @@ function Content() {
         {columns.map((column) => (
           <Column key={column.id} columnId={column.id} />
         ))}
+        <div
+          className={classNames(`${styles.container} ${styles.newColumn}`)}
+          onClick={() => openBoardForm(true, "modify")}
+        >
+          + Nouvelle colonne
+        </div>
       </div>
     </div>
   );
