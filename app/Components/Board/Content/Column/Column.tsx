@@ -4,7 +4,7 @@ import styles from "./Column.module.css";
 import type { TTask } from "@/app/Types/Types";
 import Task from "./Task/Task";
 import { useBoardsStore } from "@/app/Stores/useBoards";
-import { ParentConfig } from "@formkit/drag-and-drop";
+import { ParentConfig, handleEnd } from "@formkit/drag-and-drop";
 import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 
 type ColumnProps = {
@@ -21,6 +21,7 @@ function Column({ columnId }: ColumnProps) {
     const taskID = Number(data.targetData.node.data.value.id);
     const destination = Number(data.targetData.parent.el.id);
     changeTaskStatus(destination, taskID);
+    handleEnd(data);
   };
 
   const tasksList = useBoardsStore((state) =>
