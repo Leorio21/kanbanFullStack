@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border: 1px solid rgb(var(--purple));
+  color: rgb(var(--purple));
+  background: var(--secondary-background-color);
+  border-radius: var(--border-radius);
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: var(--font--large);
+}
+
+.button:hover {
+  background: var(--board-toggle--hover);
+  cursor: pointer;
+  color: rgb(var(--purple));
+}

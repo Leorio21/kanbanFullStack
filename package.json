@@ -1,5 +1,5 @@
 {
-  "name": "kanban",
+  "name": "kanbanfull",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.2.0",
     "@formkit/drag-and-drop": "^0.0.38",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@prisma/client": "^5.15.0",
+    "@t3-oss/env-nextjs": "^0.10.1",
+    "@tanstack/react-query": "^5.45.0",
+    "@tanstack/react-query-devtools": "^5.45.0",
     "classnames": "^2.5.1",
     "next": "14.1.4",
+    "next-auth": "5.0.0-beta.19",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.3",
+    "react-icons": "^5.2.1",
+    "sonner": "^1.5.0",
+    "zod": "^3.23.8",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
@@ -23,6 +33,8 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
+    "prisma": "^5.15.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

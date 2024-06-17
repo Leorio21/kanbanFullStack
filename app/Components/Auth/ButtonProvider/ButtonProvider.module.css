@@ -1,0 +1,22 @@
+.button {
+  --BP-background-color: rgb(31, 31, 31);
+  --BP-font-color: rgb(240, 240, 240);
+  --BP-border-radius: 6px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: var(--BP-border-radius);
+  background: var(--BP-background-color);
+  color: var(--BP-font-color);
+  cursor: pointer;
+}
+
+.button:hover {
+  outline: 3px solid var(--BP-font-color);
+}

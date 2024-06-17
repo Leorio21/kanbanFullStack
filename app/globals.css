@@ -14,6 +14,8 @@
   --red: 234, 85, 85; /*#EA5555*/
   --red--light: 255, 152, 152; /*#FF9898*/
 
+  --backdrop: rgba(0, 0, 0, 0.5);
+  --border-radius: 6px;
   --column-width: 280px;
 
   --primary-background-color: rgb(var(--white));
@@ -69,6 +71,7 @@
 html {
   height: 100svh;
   max-height: 100svh;
+  color-scheme: light dark;
 }
 
 body {
@@ -106,6 +109,6 @@ a {
   }
 
   html {
-    color-scheme: light dark;
+    color-scheme: dark;
   }
 }

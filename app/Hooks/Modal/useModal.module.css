@@ -1,0 +1,45 @@
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--backdrop);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  background: var(--secondary-background-color);
+  box-shadow: 0 0 5px rgb(var(--black));
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  box-shadow: 3px 3px 3px var(--primary-background-color);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.button:hover {
+  transform: translateY(2px) translateX(2px);
+  box-shadow: 1px 1px 1px var(--primary-background-color);
+}
+
+.cancel {
+  background: red;
+  color: white;
+}
